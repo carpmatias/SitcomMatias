@@ -17,15 +17,19 @@ namespace DAL
         public Encuestas()
         {
             this.EncuestasAsignadas = new HashSet<EncuestasAsignadas>();
+            this.Preguntas1 = new HashSet<Preguntas>();
         }
     
         public int idEncuesta { get; set; }
         public string nombre { get; set; }
         public string descripcion { get; set; }
         public Nullable<int> idTipoEncuesta { get; set; }
+        public Nullable<System.DateTime> fechaVencimiento { get; set; }
     
         public virtual TiposEncuesta TiposEncuesta { get; set; }
         public virtual ICollection<EncuestasAsignadas> EncuestasAsignadas { get; set; }
         public virtual Preguntas Preguntas { get; set; }
+        public virtual TiposEncuesta TiposEncuesta1 { get; set; }
+        public virtual ICollection<Preguntas> Preguntas1 { get; set; }
     }
 }

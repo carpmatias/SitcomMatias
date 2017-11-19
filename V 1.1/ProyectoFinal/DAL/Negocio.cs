@@ -24,6 +24,7 @@ namespace DAL
             this.Sucursal = new HashSet<Sucursal>();
             this.Tramite = new HashSet<Tramite>();
             this.Promociones = new HashSet<Promociones>();
+            this.EncuestasAsignadas = new HashSet<EncuestasAsignadas>();
         }
     
         public int idNegocio { get; set; }
@@ -46,5 +47,6 @@ namespace DAL
         public virtual ICollection<Sucursal> Sucursal { get; set; }
         public virtual ICollection<Tramite> Tramite { get; set; }
         public virtual ICollection<Promociones> Promociones { get; set; }
+        public virtual ICollection<EncuestasAsignadas> EncuestasAsignadas { get; set; }
     }
 }

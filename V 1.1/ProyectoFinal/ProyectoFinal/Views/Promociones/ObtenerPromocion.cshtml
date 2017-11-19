@@ -1,0 +1,81 @@
+﻿@model BussinesEntities.PromocionesEntity
+
+@{
+    ViewBag.Title = "Obtener Promocion";
+}
+
+<h2>Obtener Promocion</h2>
+
+<br />
+
+<div>
+    *Leé los detalles de la promoción y clickeá en OBTENER PROMOCIÓN si deseás obtenerla.
+    *Recordá que sólo podes acceder a una promoción por negocio, por lo que una vez que obtengas el código de la misma,
+    no podras solicitar otra promoción del mismo negocio hasta que la ya obtenida se encuentre VENCIDA o bien haya sido UTILIZADA.
+</div>
+
+<br />
+<div>
+    <h4>Detalles</h4>
+    <hr />
+    <dl class="dl-horizontal">
+
+        <dt>
+            Titulo:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.titulo)
+        </dd>
+
+        <dt>
+            Descripcion:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.descripcion)
+        </dd>
+
+        <dt>
+            Dias de validez:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.diasBeneficio)
+        </dd>
+
+        <dt>
+            Negocio:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Negocio.nombre)
+        </dd>
+
+        <div class="form-group" style="display:none">
+
+            @Html.HiddenFor(p => p.idPromocion)
+
+        </div>
+
+        <div class="form-group" style="display:none">
+
+            @Html.HiddenFor(p => p.idNegocio)
+
+
+        
+        </div>
+
+         </dl>
+    </div>
+
+<br />
+<div style="color:red">
+    
+    @ViewBag.Mensaje
+
+</div>
+
+<p>
+    <button style="font-size:15px; padding:5px; width:30px" onclick="window.location = '@Url.Action("OtorgarPromocion", "Promociones", new { idPromocion = Model.idPromocion })'" class="btn btn-xs btn-blue tooltips" data-placement="top" data-original-title="Editar">OBTENER PROMOCIÓN</button>
+</p>

@@ -12,7 +12,7 @@ namespace DAL
     using System;
     using System.Collections.Generic;
     
-    public partial class RtasXEncuestaAsignada
+    public partial class RtasXEncuestasAsignadas
     {
         public int idEncuestaAsignada { get; set; }
         public int idPregunta { get; set; }

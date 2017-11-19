@@ -447,6 +447,7 @@
     <EntitySetMapping Name="Encuestas">
       <EntityTypeMapping TypeName="SitcomModel.Encuestas">
         <MappingFragment StoreEntitySet="Encuestas">
+          <ScalarProperty Name="fechaVencimiento" ColumnName="fechaVencimiento" />
           <ScalarProperty Name="idTipoEncuesta" ColumnName="idTipoEncuesta" />
           <ScalarProperty Name="descripcion" ColumnName="descripcion" />
           <ScalarProperty Name="nombre" ColumnName="nombre" />
@@ -457,6 +458,7 @@
     <EntitySetMapping Name="EncuestasAsignadas">
       <EntityTypeMapping TypeName="SitcomModel.EncuestasAsignadas">
         <MappingFragment StoreEntitySet="EncuestasAsignadas">
+          <ScalarProperty Name="idNegocio" ColumnName="idNegocio" />
           <ScalarProperty Name="fechaRespuesta" ColumnName="fechaRespuesta" />
           <ScalarProperty Name="fechaAsignacion" ColumnName="fechaAsignacion" />
           <ScalarProperty Name="idUsuario" ColumnName="idUsuario" />
@@ -468,6 +470,7 @@
     <EntitySetMapping Name="Preguntas">
       <EntityTypeMapping TypeName="SitcomModel.Preguntas">
         <MappingFragment StoreEntitySet="Preguntas">
+          <ScalarProperty Name="idClasifPregunta" ColumnName="idClasifPregunta" />
           <ScalarProperty Name="idEncuesta" ColumnName="idEncuesta" />
           <ScalarProperty Name="textoPregunta" ColumnName="textoPregunta" />
           <ScalarProperty Name="idPregunta" ColumnName="idPregunta" />
@@ -496,15 +499,6 @@
           <ScalarProperty Name="fechaOtorgamiento" ColumnName="fechaOtorgamiento" />
           <ScalarProperty Name="idUsuario" ColumnName="idUsuario" />
           <ScalarProperty Name="idPromocion" ColumnName="idPromocion" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="RtasXEncuestaAsignada">
-      <EntityTypeMapping TypeName="SitcomModel.RtasXEncuestaAsignada">
-        <MappingFragment StoreEntitySet="RtasXEncuestaAsignada">
-          <ScalarProperty Name="respuesta" ColumnName="respuesta" />
-          <ScalarProperty Name="idPregunta" ColumnName="idPregunta" />
-          <ScalarProperty Name="idEncuestaAsignada" ColumnName="idEncuestaAsignada" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -559,5 +553,58 @@
     <FunctionImportMapping FunctionImportName="otorgarPromocion" FunctionName="SitcomModel.Store.otorgarPromocion" />
     <FunctionImportMapping FunctionImportName="regUsoPromocion" FunctionName="SitcomModel.Store.regUsoPromocion" />
     <FunctionImportMapping FunctionImportName="updatePromociones" FunctionName="SitcomModel.Store.updatePromociones" />
+    <EntitySetMapping Name="ClasifPregunta">
+      <EntityTypeMapping TypeName="SitcomModel.ClasifPregunta">
+        <MappingFragment StoreEntitySet="ClasifPregunta">
+          <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+          <ScalarProperty Name="nombre" ColumnName="nombre" />
+          <ScalarProperty Name="idClasifPregunta" ColumnName="idClasifPregunta" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="RtasXEncuestasAsignadas">
+      <EntityTypeMapping TypeName="SitcomModel.RtasXEncuestasAsignadas">
+        <MappingFragment StoreEntitySet="RtasXEncuestasAsignadas">
+          <ScalarProperty Name="respuesta" ColumnName="respuesta" />
+          <ScalarProperty Name="idPregunta" ColumnName="idPregunta" />
+          <ScalarProperty Name="idEncuestaAsignada" ColumnName="idEncuestaAsignada" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="asignarEncuesta" FunctionName="SitcomModel.Store.asignarEncuesta" />
+    <FunctionImportMapping FunctionImportName="GetEncuestasAsignadas" FunctionName="SitcomModel.Store.GetEncuestasAsignadas">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SitcomModel.GetEncuestasAsignadas_Result">
+          <ScalarProperty Name="NOMBRE" ColumnName="NOMBRE" />
+          <ScalarProperty Name="TIPO" ColumnName="TIPO" />
+          <ScalarProperty Name="NEGOCIO" ColumnName="NEGOCIO" />
+          <ScalarProperty Name="ASIGNADA" ColumnName="ASIGNADA" />
+          <ScalarProperty Name="RESPUESTA" ColumnName="RESPUESTA" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="GetPreguntasEncuesta" FunctionName="SitcomModel.Store.GetPreguntasEncuesta">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SitcomModel.GetPreguntasEncuesta_Result">
+          <ScalarProperty Name="idPregunta" ColumnName="idPregunta" />
+          <ScalarProperty Name="textoPregunta" ColumnName="textoPregunta" />
+          <ScalarProperty Name="CLASIFICACION" ColumnName="CLASIFICACION" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="RegRtaXPregunta" FunctionName="SitcomModel.Store.RegRtaXPregunta" />
+    <FunctionImportMapping FunctionImportName="getPromociones2" FunctionName="SitcomModel.Store.getPromociones2">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SitcomModel.getPromociones2_Result">
+          <ScalarProperty Name="idPromocion" ColumnName="idPromocion" />
+          <ScalarProperty Name="fechaAlta" ColumnName="fechaAlta" />
+          <ScalarProperty Name="fechaVencimiento" ColumnName="fechaVencimiento" />
+          <ScalarProperty Name="titulo" ColumnName="titulo" />
+          <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+          <ScalarProperty Name="diasBeneficio" ColumnName="diasBeneficio" />
+          <ScalarProperty Name="idNegocio" ColumnName="idNegocio" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
   </EntityContainerMapping>
 </Mapping>

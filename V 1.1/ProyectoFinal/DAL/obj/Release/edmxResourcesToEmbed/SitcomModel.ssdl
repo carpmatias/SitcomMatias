@@ -44,6 +44,14 @@
     <Property Name="idCategoria" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="nombre" Type="varchar" MaxLength="150" />
   </EntityType>
+  <EntityType Name="ClasifPregunta">
+    <Key>
+      <PropertyRef Name="idClasifPregunta" />
+    </Key>
+    <Property Name="idClasifPregunta" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nombre" Type="nvarchar" MaxLength="50" />
+    <Property Name="descripcion" Type="nvarchar" MaxLength="200" />
+  </EntityType>
   <EntityType Name="Comercio">
     <Key>
       <PropertyRef Name="idComercio" />
@@ -99,18 +107,20 @@
     </Key>
     <Property Name="idEncuesta" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="nombre" Type="nvarchar" MaxLength="50" />
-    <Property Name="descripcion" Type="nvarchar" MaxLength="50" />
+    <Property Name="descripcion" Type="nvarchar" MaxLength="200" />
     <Property Name="idTipoEncuesta" Type="int" />
+    <Property Name="fechaVencimiento" Type="date" />
   </EntityType>
   <EntityType Name="EncuestasAsignadas">
     <Key>
       <PropertyRef Name="idEncuestaAsignada" />
     </Key>
-    <Property Name="idEncuestaAsignada" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="idEncuesta" Type="int" />
     <Property Name="idUsuario" Type="int" />
+    <Property Name="idNegocio" Type="int" />
     <Property Name="fechaAsignacion" Type="date" />
     <Property Name="fechaRespuesta" Type="date" />
+    <Property Name="idEncuestaAsignada" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
   </EntityType>
   <EntityType Name="EstadoReserva">
     <Key>
@@ -247,7 +257,8 @@
       <PropertyRef Name="idPregunta" />
     </Key>
     <Property Name="idPregunta" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="textoPregunta" Type="nvarchar" MaxLength="50" />
+    <Property Name="idClasifPregunta" Type="int" />
+    <Property Name="textoPregunta" Type="nvarchar" MaxLength="200" />
     <Property Name="idEncuesta" Type="int" />
   </EntityType>
   <EntityType Name="Promociones">
@@ -291,11 +302,10 @@
     <Property Name="idSolicitud" Type="int" />
     <Property Name="idEstado" Type="int" />
   </EntityType>
-  <EntityType Name="RtasXEncuestaAsignada">
+  <EntityType Name="RtasXEncuestasAsignadas">
     <Key>
       <PropertyRef Name="idEncuestaAsignada" />
       <PropertyRef Name="idPregunta" />
-      <PropertyRef Name="respuesta" />
     </Key>
     <Property Name="idEncuestaAsignada" Type="int" Nullable="false" />
     <Property Name="idPregunta" Type="int" Nullable="false" />
@@ -397,7 +407,7 @@
     </Key>
     <Property Name="idTipoEncuesta" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="nombre" Type="nvarchar" MaxLength="50" />
-    <Property Name="descripcion" Type="nvarchar" MaxLength="50" />
+    <Property Name="descripcion" Type="nvarchar" MaxLength="200" />
   </EntityType>
   <EntityType Name="TipoTramite">
     <Key>
@@ -612,14 +622,14 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_Encuestas_TiposEncuesta">
-    <End Role="TiposEncuesta" Type="Self.TiposEncuesta" Multiplicity="0..1" />
-    <End Role="Encuestas" Type="Self.Encuestas" Multiplicity="*" />
+    <End Role="TiposEncuesta" Type="Self.TiposEncuesta" Multiplicity="1" />
+    <End Role="Encuestas" Type="Self.Encuestas" Multiplicity="0..1" />
     <ReferentialConstraint>
       <Principal Role="TiposEncuesta">
         <PropertyRef Name="idTipoEncuesta" />
       </Principal>
       <Dependent Role="Encuestas">
-        <PropertyRef Name="idTipoEncuesta" />
+        <PropertyRef Name="idEncuesta" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -632,6 +642,18 @@
       </Principal>
       <Dependent Role="EncuestasAsignadas">
         <PropertyRef Name="idEncuesta" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_EncuestasAsignadas_Negocio">
+    <End Role="Negocio" Type="Self.Negocio" Multiplicity="0..1" />
+    <End Role="EncuestasAsignadas" Type="Self.EncuestasAsignadas" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Negocio">
+        <PropertyRef Name="idNegocio" />
+      </Principal>
+      <Dependent Role="EncuestasAsignadas">
+        <PropertyRef Name="idNegocio" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -864,13 +886,25 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_Preguntas_Encuestas">
-    <End Role="Encuestas" Type="Self.Encuestas" Multiplicity="1" />
-    <End Role="Preguntas" Type="Self.Preguntas" Multiplicity="0..1" />
+    <End Role="Encuestas" Type="Self.Encuestas" Multiplicity="0..1" />
+    <End Role="Preguntas" Type="Self.Preguntas" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Encuestas">
         <PropertyRef Name="idEncuesta" />
       </Principal>
       <Dependent Role="Preguntas">
+        <PropertyRef Name="idEncuesta" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Preguntas_Preguntas">
+    <End Role="Preguntas" Type="Self.Preguntas" Multiplicity="1" />
+    <End Role="Preguntas1" Type="Self.Preguntas" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Preguntas">
+        <PropertyRef Name="idPregunta" />
+      </Principal>
+      <Dependent Role="Preguntas1">
         <PropertyRef Name="idPregunta" />
       </Dependent>
     </ReferentialConstraint>
@@ -923,26 +957,26 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_RtasXEncuestaAsignada_EncuestasAsignadas">
+  <Association Name="FK_RtasXEncuestasAsignadas_EncuestasAsignadas">
     <End Role="EncuestasAsignadas" Type="Self.EncuestasAsignadas" Multiplicity="1" />
-    <End Role="RtasXEncuestaAsignada" Type="Self.RtasXEncuestaAsignada" Multiplicity="*" />
+    <End Role="RtasXEncuestasAsignadas" Type="Self.RtasXEncuestasAsignadas" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="EncuestasAsignadas">
         <PropertyRef Name="idEncuestaAsignada" />
       </Principal>
-      <Dependent Role="RtasXEncuestaAsignada">
+      <Dependent Role="RtasXEncuestasAsignadas">
         <PropertyRef Name="idEncuestaAsignada" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_RtasXEncuestaAsignada_Preguntas">
+  <Association Name="FK_RtasXEncuestasAsignadas_Preguntas">
     <End Role="Preguntas" Type="Self.Preguntas" Multiplicity="1" />
-    <End Role="RtasXEncuestaAsignada" Type="Self.RtasXEncuestaAsignada" Multiplicity="*" />
+    <End Role="RtasXEncuestasAsignadas" Type="Self.RtasXEncuestasAsignadas" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Preguntas">
         <PropertyRef Name="idPregunta" />
       </Principal>
-      <Dependent Role="RtasXEncuestaAsignada">
+      <Dependent Role="RtasXEncuestasAsignadas">
         <PropertyRef Name="idPregunta" />
       </Dependent>
     </ReferentialConstraint>
@@ -1086,6 +1120,12 @@
     <Parameter Name="descripcion" Type="varchar" Mode="In" />
     <Parameter Name="diasBeneficio" Type="int" Mode="In" />
   </Function>
+  <Function Name="asignarEncuesta" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="idTipoEncuesta" Type="int" Mode="In" />
+    <Parameter Name="idUsuario" Type="int" Mode="In" />
+    <Parameter Name="idNegocio" Type="int" Mode="In" />
+    <Parameter Name="checkOutDate" Type="varchar" Mode="In" />
+  </Function>
   <Function Name="cambiarCasaODptoNuevoComplejo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="idNegocioNuevo" Type="int" Mode="In" />
   </Function>
@@ -1096,13 +1136,13 @@
     <Parameter Name="idPromocion" Type="int" Mode="In" />
   </Function>
   <Function Name="ConsultarHabitacionesDisponiblesPorFechaYNegocio" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-    <Parameter Name="fechaDesde" Type="datetime" Mode="In" />
-    <Parameter Name="fechaHasta" Type="datetime" Mode="In" />
+    <Parameter Name="fecha_desde" Type="varchar" Mode="In" />
+    <Parameter Name="fecha_hasta" Type="varchar" Mode="In" />
     <Parameter Name="idNegocio" Type="int" Mode="In" />
   </Function>
   <Function Name="ConsultarHabitacionesDisponiblesPorFechaYNegocio_Planning" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-    <Parameter Name="fechaDesde" Type="datetime" Mode="In" />
-    <Parameter Name="fechaHasta" Type="datetime" Mode="In" />
+    <Parameter Name="fecha_desde" Type="varchar" Mode="In" />
+    <Parameter Name="fecha_hasta" Type="varchar" Mode="In" />
     <Parameter Name="idNegocio" Type="int" Mode="In" />
   </Function>
   <Function Name="ConsultarLugaresHospedaje" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
@@ -1147,9 +1187,18 @@
     <Parameter Name="anio" Type="int" Mode="In" />
     <Parameter Name="mes" Type="int" Mode="In" />
   </Function>
+  <Function Name="GetEncuestasAsignadas" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="idUsuario" Type="int" Mode="In" />
+  </Function>
+  <Function Name="GetPreguntasEncuesta" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="idEncuestaAsignada" Type="int" Mode="In" />
+  </Function>
   <Function Name="getPromociones" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="idNegocio" Type="int" Mode="In" />
     <Parameter Name="esTurista" Type="int" Mode="In" />
+  </Function>
+  <Function Name="getPromociones2" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="idNegocio" Type="int" Mode="In" />
   </Function>
   <Function Name="getPromocionesOtorgadas" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="idUsuario" Type="int" Mode="In" />
@@ -1178,6 +1227,11 @@
   <Function Name="Persona_s_By_IdNegocio" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="idNegocio" Type="int" Mode="In" />
   </Function>
+  <Function Name="RegRtaXPregunta" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="idPregunta" Type="int" Mode="In" />
+    <Parameter Name="idEncuestaAsignada" Type="int" Mode="In" />
+    <Parameter Name="respuesta" Type="int" Mode="In" />
+  </Function>
   <Function Name="regUsoPromocion" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="codigo" Type="nvarchar" Mode="In" />
   </Function>
@@ -1202,6 +1256,7 @@
     <EntitySet Name="CasaDptoOCabana" EntityType="Self.CasaDptoOCabana" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="CategoriaCaracteristicas" EntityType="Self.CategoriaCaracteristicas" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="CategoriaHospedaje" EntityType="Self.CategoriaHospedaje" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ClasifPregunta" EntityType="Self.ClasifPregunta" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Comercio" EntityType="Self.Comercio" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Complejo" EntityType="Self.Complejo" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="DetalleDisponibilidad" EntityType="Self.DetalleDisponibilidad" Schema="dbo" store:Type="Tables" />
@@ -1228,7 +1283,7 @@
     <EntitySet Name="PromocionesOtorgadas" EntityType="Self.PromocionesOtorgadas" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Provincia" EntityType="Self.Provincia" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Reserva" EntityType="Self.Reserva" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="RtasXEncuestaAsignada" EntityType="Self.RtasXEncuestaAsignada" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="RtasXEncuestasAsignadas" EntityType="Self.RtasXEncuestasAsignadas" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Rubro" EntityType="Self.Rubro" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Sexo" EntityType="Self.Sexo" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Solicitud" EntityType="Self.Solicitud" Schema="dbo" store:Type="Tables" />
@@ -1312,6 +1367,10 @@
       <End Role="Encuestas" EntitySet="Encuestas" />
       <End Role="EncuestasAsignadas" EntitySet="EncuestasAsignadas" />
     </AssociationSet>
+    <AssociationSet Name="FK_EncuestasAsignadas_Negocio" Association="Self.FK_EncuestasAsignadas_Negocio">
+      <End Role="Negocio" EntitySet="Negocio" />
+      <End Role="EncuestasAsignadas" EntitySet="EncuestasAsignadas" />
+    </AssociationSet>
     <AssociationSet Name="FK_EncuestasAsignadas_Usuarios" Association="Self.FK_EncuestasAsignadas_Usuarios">
       <End Role="Usuarios" EntitySet="Usuarios" />
       <End Role="EncuestasAsignadas" EntitySet="EncuestasAsignadas" />
@@ -1392,6 +1451,10 @@
       <End Role="Encuestas" EntitySet="Encuestas" />
       <End Role="Preguntas" EntitySet="Preguntas" />
     </AssociationSet>
+    <AssociationSet Name="FK_Preguntas_Preguntas" Association="Self.FK_Preguntas_Preguntas">
+      <End Role="Preguntas" EntitySet="Preguntas" />
+      <End Role="Preguntas1" EntitySet="Preguntas" />
+    </AssociationSet>
     <AssociationSet Name="FK_Promociones_Negocio" Association="Self.FK_Promociones_Negocio">
       <End Role="Negocio" EntitySet="Negocio" />
       <End Role="Promociones" EntitySet="Promociones" />
@@ -1408,13 +1471,13 @@
       <End Role="Pais" EntitySet="Pais" />
       <End Role="Provincia" EntitySet="Provincia" />
     </AssociationSet>
-    <AssociationSet Name="FK_RtasXEncuestaAsignada_EncuestasAsignadas" Association="Self.FK_RtasXEncuestaAsignada_EncuestasAsignadas">
+    <AssociationSet Name="FK_RtasXEncuestasAsignadas_EncuestasAsignadas" Association="Self.FK_RtasXEncuestasAsignadas_EncuestasAsignadas">
       <End Role="EncuestasAsignadas" EntitySet="EncuestasAsignadas" />
-      <End Role="RtasXEncuestaAsignada" EntitySet="RtasXEncuestaAsignada" />
+      <End Role="RtasXEncuestasAsignadas" EntitySet="RtasXEncuestasAsignadas" />
     </AssociationSet>
-    <AssociationSet Name="FK_RtasXEncuestaAsignada_Preguntas" Association="Self.FK_RtasXEncuestaAsignada_Preguntas">
+    <AssociationSet Name="FK_RtasXEncuestasAsignadas_Preguntas" Association="Self.FK_RtasXEncuestasAsignadas_Preguntas">
       <End Role="Preguntas" EntitySet="Preguntas" />
-      <End Role="RtasXEncuestaAsignada" EntitySet="RtasXEncuestaAsignada" />
+      <End Role="RtasXEncuestasAsignadas" EntitySet="RtasXEncuestasAsignadas" />
     </AssociationSet>
     <AssociationSet Name="FK_Solicitud_Negocio" Association="Self.FK_Solicitud_Negocio">
       <End Role="Negocio" EntitySet="Negocio" />

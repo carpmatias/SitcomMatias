@@ -189,6 +189,7 @@
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Controllers\PromocionesController.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="Controllers\UsuariosController.cs" />
@@ -621,6 +622,14 @@
     <Content Include="Views\Encuestas\Details.cshtml" />
     <Content Include="Views\Encuestas\Edit.cshtml" />
     <Content Include="Views\Encuestas\Index.cshtml" />
+    <Content Include="Views\Promociones\NuevaPromocion.cshtml" />
+    <Content Include="Views\Promociones\Delete.cshtml" />
+    <Content Include="Views\Promociones\Edit.cshtml" />
+    <Content Include="Views\Promociones\PromocionesNeg.cshtml" />
+    <Content Include="Views\Promociones\ValidarPromocion.cshtml" />
+    <Content Include="Views\Promociones\PromocionOtorgada.cshtml" />
+    <Content Include="Views\Promociones\PromocionesUsuario.cshtml" />
+    <Content Include="Views\Promociones\ObtenerPromocion.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

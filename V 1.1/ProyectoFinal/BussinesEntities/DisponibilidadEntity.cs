@@ -7,10 +7,8 @@ using System.Threading.Tasks;
 
 namespace BussinesEntities
 {
- public   class DisponibilidadEntity
+ public class DisponibilidadEntity
     {
-
-
         public int idDisponibilidad { get; set; }
         public Nullable<System.DateTime> fechaDesde { get; set; }
         public Nullable<System.DateTime> fechaHasta { get; set; }

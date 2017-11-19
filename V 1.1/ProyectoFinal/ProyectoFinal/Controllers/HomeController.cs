@@ -13,6 +13,7 @@ namespace ProyectoFinal.Controllers
     {
         public UsuarioEntity usuarioActual;
         public UsuariosManager um = new UsuariosManager();
+
         public ActionResult Index()
         {
             ObtenerUsuarioActual();

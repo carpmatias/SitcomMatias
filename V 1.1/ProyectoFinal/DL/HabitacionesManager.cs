@@ -9,12 +9,9 @@ using System.Data.SqlClient;
 
 namespace BL
 {
- public   class HabitacionesManager
+ public class HabitacionesManager
     {
-
-
-
-        public List<DisponibilidadEntity> consultarDisponibilidad(int? idHab , int? anio, int? mes)
+         public List<DisponibilidadEntity> consultarDisponibilidad(int? idHab , int? anio, int? mes)
         {
             List<DisponibilidadEntity> lstDispo = new List<DisponibilidadEntity>();
 
@@ -26,8 +23,6 @@ namespace BL
                 SqlParameter paramAnio = new SqlParameter("@pAnio", anio);
                 SqlParameter paramMes = new SqlParameter("@pMes", mes);
 
-
-
                 return db.Database.SqlQuery<DisponibilidadEntity>("getDisponibilidadHabitacion @idHabitacion=@pHabitacion, @anio=@pAnio , @mes= @pMes ", paramHabitacion, paramAnio, paramMes).ToList();
 
 
@@ -36,10 +31,5 @@ namespace BL
 
 
         }
-
-
-
-
-
     }
 }

@@ -26,3 +26,17 @@ E:\Facultad\5to Año\Proyecto Final\Proyecto Final - Final\V 1.1\ProyectoFinal\D
 E:\Facultad\5to Año\Proyecto Final\Proyecto Final - Final\V 1.1\ProyectoFinal\DL\obj\Release\BL.csprojResolveAssemblyReference.cache
 E:\Facultad\5to Año\Proyecto Final\Proyecto Final - Final\V 1.1\ProyectoFinal\DL\obj\Release\DL.dll
 E:\Facultad\5to Año\Proyecto Final\Proyecto Final - Final\V 1.1\ProyectoFinal\DL\obj\Release\DL.pdb
+E:\Facultad\5to Año\Proyecto Final\Sitcom Matias (Final)\V 1.1\ProyectoFinal\DL\obj\Release\BL.csprojResolveAssemblyReference.cache
+E:\Facultad\5to Año\Proyecto Final\Sitcom Matias (Final)\V 1.1\ProyectoFinal\DL\obj\Release\DL.dll
+E:\Facultad\5to Año\Proyecto Final\Sitcom Matias (Final)\V 1.1\ProyectoFinal\DL\bin\Release\DL.dll.config
+E:\Facultad\5to Año\Proyecto Final\Sitcom Matias (Final)\V 1.1\ProyectoFinal\DL\bin\Release\DL.dll
+E:\Facultad\5to Año\Proyecto Final\Sitcom Matias (Final)\V 1.1\ProyectoFinal\DL\bin\Release\DL.pdb
+E:\Facultad\5to Año\Proyecto Final\Sitcom Matias (Final)\V 1.1\ProyectoFinal\DL\bin\Release\BussinesEntities.dll
+E:\Facultad\5to Año\Proyecto Final\Sitcom Matias (Final)\V 1.1\ProyectoFinal\DL\bin\Release\DAL.dll
+E:\Facultad\5to Año\Proyecto Final\Sitcom Matias (Final)\V 1.1\ProyectoFinal\DL\bin\Release\EntityFramework.dll
+E:\Facultad\5to Año\Proyecto Final\Sitcom Matias (Final)\V 1.1\ProyectoFinal\DL\bin\Release\EntityFramework.SqlServer.dll
+E:\Facultad\5to Año\Proyecto Final\Sitcom Matias (Final)\V 1.1\ProyectoFinal\DL\bin\Release\BussinesEntities.pdb
+E:\Facultad\5to Año\Proyecto Final\Sitcom Matias (Final)\V 1.1\ProyectoFinal\DL\bin\Release\DAL.pdb
+E:\Facultad\5to Año\Proyecto Final\Sitcom Matias (Final)\V 1.1\ProyectoFinal\DL\bin\Release\EntityFramework.xml
+E:\Facultad\5to Año\Proyecto Final\Sitcom Matias (Final)\V 1.1\ProyectoFinal\DL\bin\Release\EntityFramework.SqlServer.xml
+E:\Facultad\5to Año\Proyecto Final\Sitcom Matias (Final)\V 1.1\ProyectoFinal\DL\obj\Release\DL.pdb

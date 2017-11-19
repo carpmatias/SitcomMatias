@@ -72,8 +72,9 @@ namespace DAL
         public virtual DbSet<Preguntas> Preguntas { get; set; }
         public virtual DbSet<Promociones> Promociones { get; set; }
         public virtual DbSet<PromocionesOtorgadas> PromocionesOtorgadas { get; set; }
-        public virtual DbSet<RtasXEncuestaAsignada> RtasXEncuestaAsignada { get; set; }
         public virtual DbSet<TiposEncuesta> TiposEncuesta { get; set; }
+        public virtual DbSet<ClasifPregunta> ClasifPregunta { get; set; }
+        public virtual DbSet<RtasXEncuestasAsignadas> RtasXEncuestasAsignadas { get; set; }
     
         public virtual int cambiarCasaODptoNuevoComplejo(Nullable<int> idNegocioNuevo)
         {
@@ -93,38 +94,38 @@ namespace DAL
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<cambiarHabitacionesNuevoHotel_Result>("cambiarHabitacionesNuevoHotel", idNegocioNuevoParameter);
         }
     
-        public virtual int ConsultarHabitacionesDisponiblesPorFechaYNegocio(Nullable<System.DateTime> fechaDesde, Nullable<System.DateTime> fechaHasta, Nullable<int> idNegocio)
+        public virtual int ConsultarHabitacionesDisponiblesPorFechaYNegocio(string fecha_desde, string fecha_hasta, Nullable<int> idNegocio)
         {
-            var fechaDesdeParameter = fechaDesde.HasValue ?
-                new ObjectParameter("fechaDesde", fechaDesde) :
-                new ObjectParameter("fechaDesde", typeof(System.DateTime));
+            var fecha_desdeParameter = fecha_desde != null ?
+                new ObjectParameter("fecha_desde", fecha_desde) :
+                new ObjectParameter("fecha_desde", typeof(string));
     
-            var fechaHastaParameter = fechaHasta.HasValue ?
-                new ObjectParameter("fechaHasta", fechaHasta) :
-                new ObjectParameter("fechaHasta", typeof(System.DateTime));
+            var fecha_hastaParameter = fecha_hasta != null ?
+                new ObjectParameter("fecha_hasta", fecha_hasta) :
+                new ObjectParameter("fecha_hasta", typeof(string));
     
             var idNegocioParameter = idNegocio.HasValue ?
                 new ObjectParameter("idNegocio", idNegocio) :
                 new ObjectParameter("idNegocio", typeof(int));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("ConsultarHabitacionesDisponiblesPorFechaYNegocio", fechaDesdeParameter, fechaHastaParameter, idNegocioParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("ConsultarHabitacionesDisponiblesPorFechaYNegocio", fecha_desdeParameter, fecha_hastaParameter, idNegocioParameter);
         }
     
-        public virtual int ConsultarHabitacionesDisponiblesPorFechaYNegocio_Planning(Nullable<System.DateTime> fechaDesde, Nullable<System.DateTime> fechaHasta, Nullable<int> idNegocio)
+        public virtual int ConsultarHabitacionesDisponiblesPorFechaYNegocio_Planning(string fecha_desde, string fecha_hasta, Nullable<int> idNegocio)
         {
-            var fechaDesdeParameter = fechaDesde.HasValue ?
-                new ObjectParameter("fechaDesde", fechaDesde) :
-                new ObjectParameter("fechaDesde", typeof(System.DateTime));
+            var fecha_desdeParameter = fecha_desde != null ?
+                new ObjectParameter("fecha_desde", fecha_desde) :
+                new ObjectParameter("fecha_desde", typeof(string));
     
-            var fechaHastaParameter = fechaHasta.HasValue ?
-                new ObjectParameter("fechaHasta", fechaHasta) :
-                new ObjectParameter("fechaHasta", typeof(System.DateTime));
+            var fecha_hastaParameter = fecha_hasta != null ?
+                new ObjectParameter("fecha_hasta", fecha_hasta) :
+                new ObjectParameter("fecha_hasta", typeof(string));
     
             var idNegocioParameter = idNegocio.HasValue ?
                 new ObjectParameter("idNegocio", idNegocio) :
                 new ObjectParameter("idNegocio", typeof(int));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("ConsultarHabitacionesDisponiblesPorFechaYNegocio_Planning", fechaDesdeParameter, fechaHastaParameter, idNegocioParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("ConsultarHabitacionesDisponiblesPorFechaYNegocio_Planning", fecha_desdeParameter, fecha_hastaParameter, idNegocioParameter);
         }
     
         public virtual int ConsultarLugaresHospedaje(Nullable<System.DateTime> fechaDesde, Nullable<System.DateTime> fechaHasta, Nullable<int> cantPersonas, Nullable<int> cantHabitaciones, string tipoHospedaje)
@@ -465,6 +466,71 @@ namespace DAL
                 new ObjectParameter("diasBeneficio", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("updatePromociones", idPromocionParameter, fechaVencimientoParameter, tituloParameter, descripcionParameter, diasBeneficioParameter);
+        }
+    
+        public virtual int asignarEncuesta(Nullable<int> idTipoEncuesta, Nullable<int> idUsuario, Nullable<int> idNegocio, string checkOutDate)
+        {
+            var idTipoEncuestaParameter = idTipoEncuesta.HasValue ?
+                new ObjectParameter("idTipoEncuesta", idTipoEncuesta) :
+                new ObjectParameter("idTipoEncuesta", typeof(int));
+    
+            var idUsuarioParameter = idUsuario.HasValue ?
+                new ObjectParameter("idUsuario", idUsuario) :
+                new ObjectParameter("idUsuario", typeof(int));
+    
+            var idNegocioParameter = idNegocio.HasValue ?
+                new ObjectParameter("idNegocio", idNegocio) :
+                new ObjectParameter("idNegocio", typeof(int));
+    
+            var checkOutDateParameter = checkOutDate != null ?
+                new ObjectParameter("checkOutDate", checkOutDate) :
+                new ObjectParameter("checkOutDate", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("asignarEncuesta", idTipoEncuestaParameter, idUsuarioParameter, idNegocioParameter, checkOutDateParameter);
+        }
+    
+        public virtual ObjectResult<GetEncuestasAsignadas_Result> GetEncuestasAsignadas(Nullable<int> idUsuario)
+        {
+            var idUsuarioParameter = idUsuario.HasValue ?
+                new ObjectParameter("idUsuario", idUsuario) :
+                new ObjectParameter("idUsuario", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetEncuestasAsignadas_Result>("GetEncuestasAsignadas", idUsuarioParameter);
+        }
+    
+        public virtual ObjectResult<GetPreguntasEncuesta_Result> GetPreguntasEncuesta(Nullable<int> idEncuestaAsignada)
+        {
+            var idEncuestaAsignadaParameter = idEncuestaAsignada.HasValue ?
+                new ObjectParameter("idEncuestaAsignada", idEncuestaAsignada) :
+                new ObjectParameter("idEncuestaAsignada", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetPreguntasEncuesta_Result>("GetPreguntasEncuesta", idEncuestaAsignadaParameter);
+        }
+    
+        public virtual int RegRtaXPregunta(Nullable<int> idPregunta, Nullable<int> idEncuestaAsignada, Nullable<int> respuesta)
+        {
+            var idPreguntaParameter = idPregunta.HasValue ?
+                new ObjectParameter("idPregunta", idPregunta) :
+                new ObjectParameter("idPregunta", typeof(int));
+    
+            var idEncuestaAsignadaParameter = idEncuestaAsignada.HasValue ?
+                new ObjectParameter("idEncuestaAsignada", idEncuestaAsignada) :
+                new ObjectParameter("idEncuestaAsignada", typeof(int));
+    
+            var respuestaParameter = respuesta.HasValue ?
+                new ObjectParameter("respuesta", respuesta) :
+                new ObjectParameter("respuesta", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("RegRtaXPregunta", idPreguntaParameter, idEncuestaAsignadaParameter, respuestaParameter);
+        }
+    
+        public virtual ObjectResult<getPromociones2_Result> getPromociones2(Nullable<int> idNegocio)
+        {
+            var idNegocioParameter = idNegocio.HasValue ?
+                new ObjectParameter("idNegocio", idNegocio) :
+                new ObjectParameter("idNegocio", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<getPromociones2_Result>("getPromociones2", idNegocioParameter);
         }
     }
 }

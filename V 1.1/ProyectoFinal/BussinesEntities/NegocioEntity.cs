@@ -42,5 +42,6 @@ namespace BussinesEntities
         public virtual Usuarios Usuarios { get; set; }
         public virtual ICollection<SucursalEntity> Sucursal { get; set; }
         public virtual ICollection<TramiteEntity> Tramite { get; set; }
+        public virtual ICollection<PromocionesNegocioEntity> Promociones { get; set; }
     }
 }

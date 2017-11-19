@@ -16,7 +16,7 @@ namespace DAL
     {
         public EncuestasAsignadas()
         {
-            this.RtasXEncuestaAsignada = new HashSet<RtasXEncuestaAsignada>();
+            this.RtasXEncuestasAsignadas = new HashSet<RtasXEncuestasAsignadas>();
         }
     
         public int idEncuestaAsignada { get; set; }
@@ -24,9 +24,11 @@ namespace DAL
         public Nullable<int> idUsuario { get; set; }
         public Nullable<System.DateTime> fechaAsignacion { get; set; }
         public Nullable<System.DateTime> fechaRespuesta { get; set; }
+        public Nullable<int> idNegocio { get; set; }
     
         public virtual Encuestas Encuestas { get; set; }
         public virtual Usuarios Usuarios { get; set; }
-        public virtual ICollection<RtasXEncuestaAsignada> RtasXEncuestaAsignada { get; set; }
+        public virtual Negocio Negocio { get; set; }
+        public virtual ICollection<RtasXEncuestasAsignadas> RtasXEncuestasAsignadas { get; set; }
     }
 }

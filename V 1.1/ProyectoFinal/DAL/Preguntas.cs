@@ -16,14 +16,18 @@ namespace DAL
     {
         public Preguntas()
         {
-            this.RtasXEncuestaAsignada = new HashSet<RtasXEncuestaAsignada>();
+            this.RtasXEncuestasAsignadas = new HashSet<RtasXEncuestasAsignadas>();
         }
     
         public int idPregunta { get; set; }
         public string textoPregunta { get; set; }
         public Nullable<int> idEncuesta { get; set; }
+        public Nullable<int> idClasifPregunta { get; set; }
     
         public virtual Encuestas Encuestas { get; set; }
-        public virtual ICollection<RtasXEncuestaAsignada> RtasXEncuestaAsignada { get; set; }
+        public virtual Encuestas Encuestas1 { get; set; }
+        public virtual Preguntas Preguntas1 { get; set; }
+        public virtual Preguntas Preguntas2 { get; set; }
+        public virtual ICollection<RtasXEncuestasAsignadas> RtasXEncuestasAsignadas { get; set; }
     }
 }

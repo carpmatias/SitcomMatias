@@ -9,6 +9,7 @@
 
     var perfil = "@Model.idPerfil"
     var mensaje = "@ViewBag.Mensaje"
+    var cantPromos = @ViewBag.CantPromos
 
     $(document).ready(function () {
 
@@ -18,6 +19,7 @@
             $("#btnTusTramitesAsignados").show();
             $("#btnTodosLosTramites").show();
             $("#tabSecretaria").show();
+            $("#btnTusPromociones").hide();
         }
         else {
             $("#btnTusTramites").show();
@@ -26,6 +28,11 @@
             $("#btnTodosLosTramites").hide();
             $("#tabSecretaria").hide();
         }
+
+        if(perfil == 1)
+            $("#btnTusPromociones").show();
+        else
+            $("#btnTusPromociones").hide();
 
         if (mensaje != "") {
             alert(mensaje);
@@ -48,6 +55,11 @@
 
         $("#btnTusNegocios").click(function (event) {
             window.location = '@Url.Action("NegociosUsuario","Negocios")';
+            event.preventDefault();
+        });
+
+        $("#btnTusPromociones").click(function (event) {
+            window.location = '@Url.Action("PromocionesUsuario","Promociones")';
             event.preventDefault();
         });
     });
@@ -93,6 +105,11 @@
                             <a href="" class="btn btn-default" id="btnTusNegocios" style="width:200px;">
                                 TUS NEGOCIOS
                             </a>
+
+                            <a href="" class="btn btn-default" id="btnTusPromociones" style="width:250px;">
+                                TUS PROMOCIONES
+                            </a>
+
                             <a href="" class="btn btn-default" id="btnTusTramites" style="width:200px;">
                                 TUS TRAMITES
                             </a>

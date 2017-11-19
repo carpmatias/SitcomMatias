@@ -20,6 +20,7 @@ namespace ProyectoFinal.Controllers
         private DomicilioManager dm = new DomicilioManager();
         private NegocioEntity neg = new NegocioEntity();
         private DomicilioEntity dom = new DomicilioEntity();
+        private PromocionesManager pm = new PromocionesManager();
         
         public ActionResult Index()
         {
@@ -501,6 +502,10 @@ namespace ProyectoFinal.Controllers
             ViewBag.NombreNegocio = neg.nombre;
             ViewBag.AddressShow = neg.Sucursal.FirstOrDefault().Domicilio.calle + " " + neg.Sucursal.FirstOrDefault().Domicilio.numero + ", " + neg.Sucursal.FirstOrDefault().Domicilio.Localidad.nombreLocalidad;
 
+
+            List<PromocionesNegocioEntity> pro = pm.getPromociones(neg.idNegocio, 1);
+
+            neg.Promociones = pro;
             
             return View(neg);
         }

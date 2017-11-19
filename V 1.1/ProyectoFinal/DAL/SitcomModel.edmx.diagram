@@ -95,17 +95,22 @@
         <EntityTypeShape EntityType="SitcomModel.Preguntas" Width="1.5" PointX="8.25" PointY="26.375" />
         <EntityTypeShape EntityType="SitcomModel.Promociones" Width="1.5" PointX="13.5" PointY="11" />
         <EntityTypeShape EntityType="SitcomModel.PromocionesOtorgadas" Width="1.5" PointX="18.75" PointY="12.25" />
-        <EntityTypeShape EntityType="SitcomModel.RtasXEncuestaAsignada" Width="1.5" PointX="10.5" PointY="24.375" />
         <EntityTypeShape EntityType="SitcomModel.TiposEncuesta" Width="1.5" PointX="3.75" PointY="15.5" />
         <AssociationConnector Association="SitcomModel.FK_Encuestas_TiposEncuesta" />
         <AssociationConnector Association="SitcomModel.FK_EncuestasAsignadas_Encuestas" />
         <AssociationConnector Association="SitcomModel.FK_Preguntas_Encuestas" />
         <AssociationConnector Association="SitcomModel.FK_EncuestasAsignadas_Usuarios" />
-        <AssociationConnector Association="SitcomModel.FK_RtasXEncuestaAsignada_EncuestasAsignadas" />
         <AssociationConnector Association="SitcomModel.FK_Promociones_Negocio" />
-        <AssociationConnector Association="SitcomModel.FK_RtasXEncuestaAsignada_Preguntas" />
         <AssociationConnector Association="SitcomModel.FK_PromocionesOtorgadas_Promociones" />
         <AssociationConnector Association="SitcomModel.FK_PromocionesOtorgadas_Usuarios" />
+        <AssociationConnector Association="SitcomModel.FK_Encuestas_TiposEncuesta1" />
+        <AssociationConnector Association="SitcomModel.FK_Preguntas_Encuestas1" />
+        <AssociationConnector Association="SitcomModel.FK_EncuestasAsignadas_Negocio" />
+        <AssociationConnector Association="SitcomModel.FK_Preguntas_Preguntas" />
+        <EntityTypeShape EntityType="SitcomModel.ClasifPregunta" Width="1.5" PointX="0.75" PointY="3.75" />
+        <EntityTypeShape EntityType="SitcomModel.RtasXEncuestasAsignadas" Width="1.5" PointX="10.875" PointY="24.625" />
+        <AssociationConnector Association="SitcomModel.FK_RtasXEncuestasAsignadas_EncuestasAsignadas" />
+        <AssociationConnector Association="SitcomModel.FK_RtasXEncuestasAsignadas_Preguntas" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

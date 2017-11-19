@@ -12,18 +12,10 @@ namespace DAL
     using System;
     using System.Collections.Generic;
     
-    public partial class TiposEncuesta
+    public partial class ClasifPregunta
     {
-        public TiposEncuesta()
-        {
-            this.Encuestas = new HashSet<Encuestas>();
-        }
-    
-        public int idTipoEncuesta { get; set; }
+        public int idClasifPregunta { get; set; }
         public string nombre { get; set; }
         public string descripcion { get; set; }
-    
-        public virtual ICollection<Encuestas> Encuestas { get; set; }
-        public virtual Encuestas Encuestas1 { get; set; }
     }
 }

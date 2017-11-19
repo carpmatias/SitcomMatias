@@ -84,8 +84,7 @@ namespace ProyectoFinal.Controllers
 
             return Convert.ToString(id);
         }
-
-
+        
         public ActionResult AgregarReserva(string fecha_desde, string fecha_hasta, int? habitacion, string accion, string referencia, string habitacion_text)
         {
 
@@ -246,7 +245,6 @@ namespace ProyectoFinal.Controllers
 
             return View(solicitudes);
         }
-
  
 
         public ActionResult VerSolicitudReserva(int? idSolicitud, int? idNegocio)

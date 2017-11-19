@@ -10,20 +10,15 @@
 namespace DAL
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class TiposEncuesta
+    public partial class getPromociones2_Result
     {
-        public TiposEncuesta()
-        {
-            this.Encuestas = new HashSet<Encuestas>();
-        }
-    
-        public int idTipoEncuesta { get; set; }
-        public string nombre { get; set; }
+        public int idPromocion { get; set; }
+        public Nullable<System.DateTime> fechaAlta { get; set; }
+        public Nullable<System.DateTime> fechaVencimiento { get; set; }
+        public string titulo { get; set; }
         public string descripcion { get; set; }
-    
-        public virtual ICollection<Encuestas> Encuestas { get; set; }
-        public virtual Encuestas Encuestas1 { get; set; }
+        public Nullable<int> diasBeneficio { get; set; }
+        public Nullable<int> idNegocio { get; set; }
     }
 }
