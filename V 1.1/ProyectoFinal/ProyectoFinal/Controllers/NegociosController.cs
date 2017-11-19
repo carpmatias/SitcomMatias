@@ -125,12 +125,24 @@ namespace ProyectoFinal.Controllers
             neg.descripcion = negocio.descripcion;
             neg.Comercio = new List<ComercioEntity>() { comercio };
 
+            domEn.listLocalidadesCercanas = dm.GetLocalidadesCercanas();
+
             neg.Sucursal.Add(new SucursalEntity()
             {
                 esPrincipal = true,
                 telefono = telefono,
                 Domicilio = domEn
             });
+
+
+            if(imagenPrinc == null)
+            {
+                ModelState.AddModelError("", "Debés seleccionar una imagen principal.");
+                ViewBag.Perfil = usuarioActual.idPerfil;
+                ViewBag.Rubros = new SelectList(db.Rubro, "idRubro", "nombreRubro", neg.Comercio.FirstOrDefault().idRubro);
+                ViewBag.TiposNegocio = new SelectList(db.TipoDeNegocio, "idTipoNegocio", "nombre", neg.idTipoNegocio);
+                return View("Nuevo", neg);
+            }
 
             byte[] buffer = null;
             using (var binaryReader = new BinaryReader(imagenPrinc.InputStream))
