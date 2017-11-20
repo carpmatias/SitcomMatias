@@ -10,15 +10,31 @@
     $(document).ready(function () {
 
 
-        if (perfil == 3) {
-            $("#btnTusTramites").hide();
+        if (perfil == 1) {
+            $("#btnTusTramites").show();
             $("#btnTusNegocios").hide();
-            $("#btnTusTramitesAsignados").show();
+            $("#btnTusTramitesAsignados").hide();
+            $("#btnTodosLosTramites").hide();
+            $("#tabSecretaria").hide();
+            $("#btnTusPromociones").show();
         }
-        else {
+
+        if (perfil == 2) {
             $("#btnTusTramites").show();
             $("#btnTusNegocios").show();
             $("#btnTusTramitesAsignados").hide();
+            $("#btnTodosLosTramites").hide();
+            $("#tabSecretaria").hide();
+            $("#btnTusPromociones").hide();
+        }
+
+        if (perfil == 3) {
+            $("#btnTusTramites").show();
+            $("#btnTusNegocios").hide();
+            $("#btnTusTramitesAsignados").show();
+            $("#btnTodosLosTramites").show();
+            $("#tabSecretaria").show();
+            $("#btnTusPromociones").hide();
         }
 
         if (mensaje != "") {

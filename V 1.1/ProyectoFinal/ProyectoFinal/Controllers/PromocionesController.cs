@@ -23,6 +23,11 @@ namespace ProyectoFinal
 
         public ActionResult ObtenerPromocion(int idPromocion)
         {
+            ObtenerUsuarioActual();
+
+            if (usuarioActual.idPerfil == 0)
+                return RedirectToAction("Login", "Usuarios");
+
            PromocionesEntity p = pm.getPromocionById(idPromocion);
            ViewBag.Mensaje = "";
            return View(p);
@@ -125,7 +130,6 @@ namespace ProyectoFinal
         {
             ObtenerUsuarioActual();
 
-
             List<PromocionesOtorgadasUsuario> p = (List<PromocionesOtorgadasUsuario>)pm.getPromocionesOtorgadas(usuarioActual.idUsuario);
 
             ViewBag.Perfil = usuarioActual.idPerfil;
@@ -142,7 +146,6 @@ namespace ProyectoFinal
             
             if (result != 0)
             {
-
                 string mensaje = "El uso de la promocion NO se pudo registrar.";
                 ViewBag.Mensaje = mensaje;
                 ViewBag.Status = 0;

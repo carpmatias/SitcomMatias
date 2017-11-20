@@ -98,7 +98,7 @@ namespace BL
             using (SitcomEntities db = new SitcomEntities())
             {
                 SqlParameter paramIdUsuario = new SqlParameter("@pIdUsuario", idUsuario);
-                List<PromocionesOtorgadasUsuario> pro = db.Database.SqlQuery<PromocionesOtorgadasUsuario>("getUltimaPromocionOtorgada @idUsuario=@pIdUsuario", paramIdUsuario).ToList();
+                List<PromocionesOtorgadasUsuario> pro = db.Database.SqlQuery<PromocionesOtorgadasUsuario>("getPromocionesOtorgadas @idUsuario=@pIdUsuario", paramIdUsuario).ToList();
 
                 return pro;
             }

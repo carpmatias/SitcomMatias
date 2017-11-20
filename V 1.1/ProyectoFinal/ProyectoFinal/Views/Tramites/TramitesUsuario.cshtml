@@ -8,27 +8,34 @@
 
     $(document).ready(function () {
 
-        if (perfil == 1 || perfil == 2) {
-            $("#divTuristaRespNegocio").show();
-            $("#NoUsuarios").show();
+        if (perfil == 1) {
+            $("#btnTusTramites").show();
+            $("#btnTusNegocios").hide();
+            $("#btnTusTramitesAsignados").hide();
             $("#btnTodosLosTramites").hide();
-        }
-        else {
-            $("#divRespSecretaria").show();
-            $("#NoSecretaria").show();
-            $("#tabSecretaria").show();
-            $("#btnTodosLosTramites").show();
+            $("#tabSecretaria").hide();
+            $("#btnTusPromociones").show();
+            $("#divTuristaRespNegocio").show();
         }
 
-        if (perfil == 3) {
-            $("#btnTusTramites").hide();
-            $("#btnTusNegocios").hide();
-            $("#btnTusTramitesAsignados").show();
-        }
-        else {
+        if (perfil == 2) {
             $("#btnTusTramites").show();
             $("#btnTusNegocios").show();
             $("#btnTusTramitesAsignados").hide();
+            $("#btnTodosLosTramites").hide();
+            $("#tabSecretaria").hide();
+            $("#btnTusPromociones").hide();
+            $("#divTuristaRespNegocio").show();
+        }
+
+        if (perfil == 3) {
+            $("#btnTusTramites").show();
+            $("#btnTusNegocios").hide();
+            $("#btnTusTramitesAsignados").show();
+            $("#btnTodosLosTramites").show();
+            $("#tabSecretaria").show();
+            $("#btnTusPromociones").hide();
+            $("#divRespSecretaria").show();
         }
 
         if (mensaje != "") {
@@ -133,15 +140,15 @@
                         {
                             <div id="divTuristaRespNegocio" style="display:none">
                                 @helper verificarIdEstado(BussinesEntities.TramiteEntity t)
-                    {
-                        if (t.EstadoTramite.idEstadoTramite == 1)
                         {
-                                        <button id="btnCancelarTramite" class="btn btn-red" onclick="cancelar(@t.idTramite)" style="font-size:10px; padding: 5px;">Cancelar <i class="fa fa-times"></i></button>
-                        }
-                        else
-                        {
-                                        <button id="btnCancelarTramite" class="btn btn-red" onclick="cancelar(@t.idTramite)" style="font-size:10px; padding: 5px;" disabled="disabled">Cancelar <i class="fa fa-times"></i></button>
-                        }
+                            if (t.EstadoTramite.idEstadoTramite == 1)
+                            {
+                                            <button id="btnCancelarTramite" class="btn btn-red" onclick="cancelar(@t.idTramite)" style="font-size:10px; padding: 5px;">Cancelar <i class="fa fa-times"></i></button>
+                            }
+                            else
+                            {
+                                            <button id="btnCancelarTramite" class="btn btn-red" onclick="cancelar(@t.idTramite)" style="font-size:10px; padding: 5px;" disabled="disabled">Cancelar <i class="fa fa-times"></i></button>
+                            }
                     }
 
          @Html.Grid(Model).Columns(columns =>

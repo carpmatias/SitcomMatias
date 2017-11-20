@@ -10,26 +10,31 @@
 
         alert(perfil);
 
-        if (perfil == 1 || perfil == 2) {
-            $("#divTuristaRespNegocio").show();
-            $("#NoUsuarios").show();
+        if (perfil == 1) {
+            $("#btnTusTramites").show();
+            $("#btnTusNegocios").hide();
             $("#btnTusTramitesAsignados").hide();
-        }
-        else {
-            $("#divRespSecretaria").show();
-            $("#NoSecretaria").show();
-            $("#tabSecretaria").show();
+            $("#btnTodosLosTramites").hide();
+            $("#tabSecretaria").hide();
+            $("#btnTusPromociones").show();
         }
 
-        if (perfil == 3) {
-            $("#btnTusTramites").hide();
-            $("#btnTusNegocios").hide();
-            $("#btnTusTramitesAsignados").show();
-        }
-        else {
+        if (perfil == 2) {
             $("#btnTusTramites").show();
             $("#btnTusNegocios").show();
             $("#btnTusTramitesAsignados").hide();
+            $("#btnTodosLosTramites").hide();
+            $("#tabSecretaria").hide();
+            $("#btnTusPromociones").hide();
+        }
+
+        if (perfil == 3) {
+            $("#btnTusTramites").show();
+            $("#btnTusNegocios").hide();
+            $("#btnTusTramitesAsignados").show();
+            $("#btnTodosLosTramites").show();
+            $("#tabSecretaria").show();
+            $("#btnTusPromociones").hide();
         }
 
         if (mensaje != "") {

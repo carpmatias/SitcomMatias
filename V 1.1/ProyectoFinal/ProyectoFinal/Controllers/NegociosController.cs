@@ -477,6 +477,8 @@ namespace ProyectoFinal.Controllers
         }
         public ActionResult VerComercio(int? id)
         {
+            ObtenerUsuarioActual();
+
             NegocioEntity neg = nm.GetNegocioById((int)id);
 
             string address = neg.Sucursal.FirstOrDefault().Domicilio.calle + "+" + neg.Sucursal.FirstOrDefault().Domicilio.numero + ",+" + neg.Sucursal.FirstOrDefault().Domicilio.Localidad.nombreLocalidad + ",+Cordoba,+Argentina";
@@ -513,7 +515,7 @@ namespace ProyectoFinal.Controllers
             ViewBag.Address = address;
             ViewBag.NombreNegocio = neg.nombre;
             ViewBag.AddressShow = neg.Sucursal.FirstOrDefault().Domicilio.calle + " " + neg.Sucursal.FirstOrDefault().Domicilio.numero + ", " + neg.Sucursal.FirstOrDefault().Domicilio.Localidad.nombreLocalidad;
-
+            ViewBag.Perfil = usuarioActual.idPerfil;
 
             List<PromocionesNegocioEntity> pro = pm.getPromociones(neg.idNegocio, 1);
 

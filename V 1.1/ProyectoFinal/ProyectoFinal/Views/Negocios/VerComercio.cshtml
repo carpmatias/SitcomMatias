@@ -60,7 +60,11 @@
         var lat = 0;
         var long = 0;
         var address = "@ViewBag.Address"
+        var perfil = @ViewBag.Perfil;
 
+       // if(perfil==0)
+       //     $("#divPromociones").hide();
+        
 
         //alert(address);
 
@@ -325,7 +329,7 @@
                         <br />
 
 
-                        <div class="row">
+                        <div class="row" id="divPromociones">
 
                             <h4>    PROMOCIONES</h4>
 
