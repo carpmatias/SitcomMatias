@@ -26,7 +26,10 @@ namespace ProyectoFinal
             ObtenerUsuarioActual();
 
             if (usuarioActual.idPerfil == 0)
+            {
+                Session["ReturnUrl"] = "../Promociones/ObtenerPromocion/?idPromocion="+idPromocion;
                 return RedirectToAction("Login", "Usuarios");
+            }
 
            PromocionesEntity p = pm.getPromocionById(idPromocion);
            ViewBag.Mensaje = "";

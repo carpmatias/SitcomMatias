@@ -183,7 +183,7 @@
     <Compile Include="Controllers\ReservasController.cs" />
     <Compile Include="Controllers\TipoHabitacionController.cs" />
     <Compile Include="Controllers\TramitesController.cs" />
-    <Compile Include="EncuestasController.cs" />
+    <Compile Include="Controllers\EncuestasController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
