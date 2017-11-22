@@ -77,6 +77,16 @@ namespace ProyectoFinal
 
              return View();
         }
+
+
+        public ActionResult FinalizarPromocion(int idPromocion, int idNegocio)
+        {
+            int result = pm.finalizarPromocion(idPromocion);
+
+            return PromocionesNeg(idNegocio);
+        }
+
+
         public ActionResult PromocionesNeg(int? idNegocio)
         {
             ObtenerUsuarioActual();

@@ -83,6 +83,18 @@ namespace BL
                 return result;
             }
         }
+
+        public int finalizarPromocion(int idPromocion)
+        {
+            using (SitcomEntities db = new SitcomEntities())
+            {
+                SqlParameter paramIdPromocion = new SqlParameter("@pIdPromocion", idPromocion);
+
+                int result = db.Database.SqlQuery<Int32>("cancelPromociones @idPromocion=@pIdPromocion", paramIdPromocion).FirstOrDefault();
+
+                return result;
+            }
+        }
         public PromocionesOtorgadasUsuario getUltimaPromocionOtorgada(int idUsuario)
         {
             using (SitcomEntities db = new SitcomEntities())
