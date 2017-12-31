@@ -22,6 +22,8 @@ namespace BussinesEntities
 
         public int DIAS_BENEFICIO { get; set; }
 
+        public int CANT_DISP { get; set; }
+
         public string ESTADO { get; set; }
     }
 }

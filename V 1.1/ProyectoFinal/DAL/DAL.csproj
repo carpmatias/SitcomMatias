@@ -137,6 +137,9 @@
     <Compile Include="getPromocionOtorgada_Result.cs">
       <DependentUpon>SitcomModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="getUltimaPromocionOtorgada_Result.cs">
+      <DependentUpon>SitcomModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Habitacion.cs">
       <DependentUpon>SitcomModel.tt</DependentUpon>
     </Compile>

@@ -80,7 +80,7 @@ namespace ProyectoFinal.Controllers
             TramiteEntity tra = tm.GetTramiteById(idtramite);
             tm.CambiarEstadoTramite(tra, accion, usuarioActual);
 
-            return RedirectToAction("PanelControlUsuario", "Usuarios", new { mensaje = "Se resolvio el tramite correctamente!" });
+            return RedirectToAction("PanelControlUsuario", "Usuarios", new { mensaje = "Se resolvió el tramite correctamente!" });
         }
         public bool ValidarPermisoVista(string controlador, string vista) //METODO UNICO DEL CONTROLADOR PARA VALIDAR PERMISO DE LA VISTA (LLAMA AL MANEJADOR).
         {

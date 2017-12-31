@@ -148,7 +148,7 @@
                                                    
                                 int idNeg = ViewBag.IdNegocio; 
                                             
-                                if(p.ESTADO != "VENCIDA")
+                                if(p.ESTADO != "VENCIDA" && p.ESTADO != "AGOTADA")
                                 {                                                                              
                                      <button style="font-size:10px; padding: 5px;" onclick="if(confirm('Seguro que deseas finalizar la promocion?')) { window.location = '@Url.Action("FinalizarPromocion", "Promociones", new { idPromocion = p.idPromocion, idNegocio = idNeg })' }" class="btn btn-xs btn-blue tooltips" data-placement="top" data-original-title="Editar">FINALIZAR</button>
                                 }
@@ -161,6 +161,7 @@
                                 columns.Add(model => model.PROMOCION).Titled("Promoción").SetWidth(100);
                                 columns.Add(model => model.DIAS_BENEFICIO).Titled("Días Beneficio").SetWidth(20);
                                 columns.Add(model => model.FECHA_ALTA).Titled("Fecha Alta").SetWidth(30);
+                                columns.Add(model => model.CANT_DISP).Titled("Disponibles").SetWidth(30);
                                 columns.Add(model => model.VENCE).Titled("Vence").SetWidth(30);
                                 columns.Add(model => model.ESTADO).Titled("Estado").SetWidth(30);
                                 columns.Add(model => model.idPromocion)

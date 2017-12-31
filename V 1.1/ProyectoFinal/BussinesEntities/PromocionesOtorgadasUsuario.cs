@@ -21,5 +21,7 @@ namespace BussinesEntities
 
         public string ESTADO { get; set; }
 
+        public int USUARIO { get; set; }
+
     }
 }

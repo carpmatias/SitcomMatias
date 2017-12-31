@@ -480,6 +480,7 @@
     <EntitySetMapping Name="Promociones">
       <EntityTypeMapping TypeName="SitcomModel.Promociones">
         <MappingFragment StoreEntitySet="Promociones">
+          <ScalarProperty Name="ofertaMaxima" ColumnName="ofertaMaxima" />
           <ScalarProperty Name="idNegocio" ColumnName="idNegocio" />
           <ScalarProperty Name="diasBeneficio" ColumnName="diasBeneficio" />
           <ScalarProperty Name="descripcion" ColumnName="descripcion" />
@@ -603,6 +604,18 @@
           <ScalarProperty Name="descripcion" ColumnName="descripcion" />
           <ScalarProperty Name="diasBeneficio" ColumnName="diasBeneficio" />
           <ScalarProperty Name="idNegocio" ColumnName="idNegocio" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="getUltimaPromocionOtorgada" FunctionName="SitcomModel.Store.getUltimaPromocionOtorgada">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SitcomModel.getUltimaPromocionOtorgada_Result">
+          <ScalarProperty Name="NEGOCIO" ColumnName="NEGOCIO" />
+          <ScalarProperty Name="PROMOCION" ColumnName="PROMOCION" />
+          <ScalarProperty Name="OBTENIDA" ColumnName="OBTENIDA" />
+          <ScalarProperty Name="VENCE" ColumnName="VENCE" />
+          <ScalarProperty Name="CODIGO" ColumnName="CODIGO" />
+          <ScalarProperty Name="ESTADO" ColumnName="ESTADO" />
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>

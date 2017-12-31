@@ -1415,6 +1415,9 @@
     <FunctionImport Name="getPromociones2" ReturnType="Collection(SitcomModel.getPromociones2_Result)">
       <Parameter Name="idNegocio" Mode="In" Type="Int32" />
     </FunctionImport>
+    <FunctionImport Name="getUltimaPromocionOtorgada" ReturnType="Collection(SitcomModel.getUltimaPromocionOtorgada_Result)">
+      <Parameter Name="idUsuario" Mode="In" Type="Int32" />
+    </FunctionImport>
   </EntityContainer>
   <ComplexType Name="cambiarHabitacionesNuevoHotel_Result">
     <Property Type="Int32" Name="Column1" Nullable="true" />
@@ -1492,6 +1495,7 @@
     <Property Name="idNegocio" Type="Int32" />
     <NavigationProperty Name="Negocio" Relationship="SitcomModel.FK_Promociones_Negocio" FromRole="Promociones" ToRole="Negocio" />
     <NavigationProperty Name="PromocionesOtorgadas" Relationship="SitcomModel.FK_PromocionesOtorgadas_Promociones" FromRole="Promociones" ToRole="PromocionesOtorgadas" />
+    <Property Name="ofertaMaxima" Type="Int32" />
   </EntityType>
   <EntityType Name="PromocionesOtorgadas">
     <Key>
@@ -1735,5 +1739,13 @@
     <Property Type="String" Name="descripcion" Nullable="true" MaxLength="200" />
     <Property Type="Int32" Name="diasBeneficio" Nullable="true" />
     <Property Type="Int32" Name="idNegocio" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="getUltimaPromocionOtorgada_Result">
+    <Property Type="String" Name="NEGOCIO" Nullable="true" MaxLength="300" />
+    <Property Type="String" Name="PROMOCION" Nullable="true" MaxLength="303" />
+    <Property Type="DateTime" Name="OBTENIDA" Nullable="true" Precision="23" />
+    <Property Type="DateTime" Name="VENCE" Nullable="true" Precision="23" />
+    <Property Type="String" Name="CODIGO" Nullable="false" MaxLength="8" />
+    <Property Type="String" Name="ESTADO" Nullable="true" MaxLength="10" />
   </ComplexType>
 </Schema>

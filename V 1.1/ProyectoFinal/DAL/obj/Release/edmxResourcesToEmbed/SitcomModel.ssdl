@@ -272,6 +272,7 @@
     <Property Name="descripcion" Type="nvarchar" MaxLength="200" />
     <Property Name="diasBeneficio" Type="int" />
     <Property Name="idNegocio" Type="int" />
+    <Property Name="ofertaMaxima" Type="int" />
   </EntityType>
   <EntityType Name="PromocionesOtorgadas">
     <Key>
@@ -1205,6 +1206,9 @@
   </Function>
   <Function Name="getPromocionOtorgada" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="codigo" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="getUltimaPromocionOtorgada" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="idUsuario" Type="int" Mode="In" />
   </Function>
   <Function Name="obtenerCodigoProm" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="codigo" Type="varchar" Mode="InOut" />

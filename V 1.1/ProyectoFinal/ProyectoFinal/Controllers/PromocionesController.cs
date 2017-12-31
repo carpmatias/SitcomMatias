@@ -19,6 +19,7 @@ namespace ProyectoFinal
         public UsuarioEntity usuarioActual;
         public UsuariosManager um = new UsuariosManager();
         private PromocionesManager pm = new PromocionesManager();
+        private PersonasManager perm = new PersonasManager();
 
 
         public ActionResult ObtenerPromocion(int idPromocion)
@@ -133,6 +134,11 @@ namespace ProyectoFinal
             else
             {
                 string mensaje = "Código validado correctamente!";
+
+                Persona per = perm.GetPersonaByIdUsuario(p.USUARIO);
+
+                ViewBag.Persona = per;
+
                 ViewBag.Mensaje = mensaje;
                 ViewBag.Status = 1;
                 return View("ValidarPromocion", p);
@@ -188,16 +194,15 @@ namespace ProyectoFinal
             return View("NuevaPromocion",pro);
         }
 
-
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult NuevaPromocion([Bind(Include = "titulo,descripcion,fechaVencimiento,diasBeneficio,idNegocio")] PromocionesEntity promociones)
+        public ActionResult NuevaPromocion([Bind(Include = "titulo,descripcion,fechaVencimiento,diasBeneficio,ofertaMaxima,idNegocio")] PromocionesEntity promociones)
         {
             if (ModelState.IsValid)
             {
                 int resultado = pm.addPromocion(promociones);
 
-                if (resultado == 0)
+                if(resultado == 0)
                 {
                     return PromocionesNeg(promociones.idNegocio);
                 }
@@ -227,6 +232,7 @@ namespace ProyectoFinal
                         descripcion = promociones.descripcion,
                         diasBeneficio = promociones.diasBeneficio,
                         fechaVencimiento = promociones.fechaVencimiento,
+                        ofertaMaxima = promociones.ofertaMaxima,
                         idNegocio = promociones.idNegocio
                     };
 

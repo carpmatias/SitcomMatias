@@ -277,6 +277,7 @@
           <Property Name="descripcion" Type="nvarchar" MaxLength="200" />
           <Property Name="diasBeneficio" Type="int" />
           <Property Name="idNegocio" Type="int" />
+          <Property Name="ofertaMaxima" Type="int" />
         </EntityType>
         <EntityType Name="PromocionesOtorgadas">
           <Key>
@@ -1210,6 +1211,9 @@
         </Function>
         <Function Name="getPromocionOtorgada" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="codigo" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="getUltimaPromocionOtorgada" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="idUsuario" Type="int" Mode="In" />
         </Function>
         <Function Name="obtenerCodigoProm" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="codigo" Type="varchar" Mode="InOut" />
@@ -2946,7 +2950,10 @@
             <Parameter Name="respuesta" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="getPromociones2" ReturnType="Collection(SitcomModel.getPromociones2_Result)">
-            <Parameter Name="idNegocio" Mode="In" Type="Int32" />
+          <Parameter Name="idNegocio" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="getUltimaPromocionOtorgada" ReturnType="Collection(SitcomModel.getUltimaPromocionOtorgada_Result)">
+            <Parameter Name="idUsuario" Mode="In" Type="Int32" />
           </FunctionImport>
         </EntityContainer>
         <ComplexType Name="cambiarHabitacionesNuevoHotel_Result">
@@ -3025,6 +3032,7 @@
           <Property Name="idNegocio" Type="Int32" />
           <NavigationProperty Name="Negocio" Relationship="SitcomModel.FK_Promociones_Negocio" FromRole="Promociones" ToRole="Negocio" />
           <NavigationProperty Name="PromocionesOtorgadas" Relationship="SitcomModel.FK_PromocionesOtorgadas_Promociones" FromRole="Promociones" ToRole="PromocionesOtorgadas" />
+          <Property Name="ofertaMaxima" Type="Int32" />
         </EntityType>
         <EntityType Name="PromocionesOtorgadas">
           <Key>
@@ -3268,6 +3276,14 @@
           <Property Type="String" Name="descripcion" Nullable="true" MaxLength="200" />
           <Property Type="Int32" Name="diasBeneficio" Nullable="true" />
           <Property Type="Int32" Name="idNegocio" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="getUltimaPromocionOtorgada_Result">
+          <Property Type="String" Name="NEGOCIO" Nullable="true" MaxLength="300" />
+          <Property Type="String" Name="PROMOCION" Nullable="true" MaxLength="303" />
+          <Property Type="DateTime" Name="OBTENIDA" Nullable="true" Precision="23" />
+          <Property Type="DateTime" Name="VENCE" Nullable="true" Precision="23" />
+          <Property Type="String" Name="CODIGO" Nullable="false" MaxLength="8" />
+          <Property Type="String" Name="ESTADO" Nullable="true" MaxLength="10" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -3754,6 +3770,7 @@
           <EntitySetMapping Name="Promociones">
             <EntityTypeMapping TypeName="SitcomModel.Promociones">
               <MappingFragment StoreEntitySet="Promociones">
+                <ScalarProperty Name="ofertaMaxima" ColumnName="ofertaMaxima" />
                 <ScalarProperty Name="idNegocio" ColumnName="idNegocio" />
                 <ScalarProperty Name="diasBeneficio" ColumnName="diasBeneficio" />
                 <ScalarProperty Name="descripcion" ColumnName="descripcion" />
@@ -3877,6 +3894,18 @@
                 <ScalarProperty Name="descripcion" ColumnName="descripcion" />
                 <ScalarProperty Name="diasBeneficio" ColumnName="diasBeneficio" />
                 <ScalarProperty Name="idNegocio" ColumnName="idNegocio" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="getUltimaPromocionOtorgada" FunctionName="SitcomModel.Store.getUltimaPromocionOtorgada">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="SitcomModel.getUltimaPromocionOtorgada_Result">
+                <ScalarProperty Name="NEGOCIO" ColumnName="NEGOCIO" />
+                <ScalarProperty Name="PROMOCION" ColumnName="PROMOCION" />
+                <ScalarProperty Name="OBTENIDA" ColumnName="OBTENIDA" />
+                <ScalarProperty Name="VENCE" ColumnName="VENCE" />
+                <ScalarProperty Name="CODIGO" ColumnName="CODIGO" />
+                <ScalarProperty Name="ESTADO" ColumnName="ESTADO" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

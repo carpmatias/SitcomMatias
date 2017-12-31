@@ -185,6 +185,7 @@ namespace BL
 
                             db.SaveChanges();
                             break;
+
                         case 3: result.fechaFin = DateTime.Now; //3: Aprobado
                             result.idEstadoTramite = 3;
                             result.Negocio.estaAprobado = true;
@@ -192,6 +193,7 @@ namespace BL
 
                             db.SaveChanges();
                             break;
+
                         case 4: result.fechaFin = DateTime.Now;//4: Rechazado
                             result.idEstadoTramite = 4;
                             result.Negocio.estaAprobado = false;
@@ -199,11 +201,18 @@ namespace BL
 
                             db.SaveChanges();
                             break;
-                        case 5: result.fechaFin = DateTime.Now;
-                            result.idEstadoTramite = 5; //5: Cancelado
 
-                            db.SaveChanges();
+                        case 5: result.fechaFin = DateTime.Now;
+                                result.idEstadoTramite = 5; //5: Cancelado
+                               
+                                db.SaveChanges();
                             break;
+
+                        case 6: result.idEstadoTramite = 6;
+                                
+                               db.SaveChanges();
+                               break;
+
                         default:
                             break;
                     }

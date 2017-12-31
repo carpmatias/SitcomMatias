@@ -26,6 +26,7 @@ namespace DAL
         public string descripcion { get; set; }
         public Nullable<int> diasBeneficio { get; set; }
         public Nullable<int> idNegocio { get; set; }
+        public Nullable<int> ofertaMaxima { get; set; }
     
         public virtual Negocio Negocio { get; set; }
         public virtual ICollection<PromocionesOtorgadas> PromocionesOtorgadas { get; set; }

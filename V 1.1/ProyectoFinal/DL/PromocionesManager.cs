@@ -47,9 +47,10 @@ namespace BL
                 SqlParameter paramDesc = new SqlParameter("@pDescripcion", p.descripcion);
                 SqlParameter paramFechaVenc = new SqlParameter("@pFechaVencimiento", p.fechaVencimiento);
                 SqlParameter paramDiasBen = new SqlParameter("@pDiasBeneficio", p.diasBeneficio);
+                SqlParameter paramOfertaMaxima = new SqlParameter("@pOfertaMaxima", p.ofertaMaxima);
                 SqlParameter paramIdNegocio = new SqlParameter("@pIdNegocio", p.idNegocio);
 
-                int result = db.Database.SqlQuery<Int32>("altaPromocion @idNegocio=@pIdNegocio, @titulo=@pTitulo , @fechaVencimiento=@pFechaVencimiento, @diasBeneficio=@pDiasBeneficio, @descripcion=@pDescripcion", paramIdNegocio, paramTitulo, paramFechaVenc, paramDiasBen, paramDesc).FirstOrDefault();
+                int result = db.Database.SqlQuery<Int32>("altaPromocion @idNegocio=@pIdNegocio, @titulo=@pTitulo , @fechaVencimiento=@pFechaVencimiento, @diasBeneficio=@pDiasBeneficio, @descripcion=@pDescripcion, @ofertaMaxima=@pOfertaMaxima", paramIdNegocio, paramTitulo, paramFechaVenc, paramDiasBen, paramDesc, paramOfertaMaxima).FirstOrDefault();
 
                 return result;
 
@@ -125,7 +126,6 @@ namespace BL
                 return pro;
             }
        }
-
         public int regUsoPromocion(string codigo)
         {
             using (SitcomEntities db = new SitcomEntities())

@@ -33,6 +33,8 @@ namespace BussinesEntities
         public Nullable<System.DateTime> fechaAlta { get; set; }
         public Nullable<int> idTipoNegocio { get; set; }
         public Nullable<int> idUsuario { get; set; }
+
+        public Nullable<bool> estaAprobado { get; set; }
         public Nullable<int> idNegocioModif { get; set; }
     
         public virtual ICollection<ComercioEntity> Comercio { get; set; }

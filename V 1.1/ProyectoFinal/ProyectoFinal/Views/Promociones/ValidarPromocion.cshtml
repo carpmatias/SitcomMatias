@@ -94,6 +94,10 @@
         @{
                             if(Model != null)
                             {
+                                DAL.Persona p = ViewBag.Persona;
+
+                                string nombreCompleto = p.nombre + " " + p.apellido;
+                                 
                                 <div>
 
                                     <h4>Promocion Valida!</h4>
@@ -132,6 +136,31 @@
                                             @Html.DisplayFor(model => model.VENCE)
                                         </dd>
 
+                                        <br />  
+
+                                        <dt>
+                                            USUARIO:
+                                        </dt>
+
+                                        <dd>
+                                            @nombreCompleto
+                                        </dd>
+
+                                        <dt>
+                                            MAIL:
+                                        </dt>
+
+                                        <dd>
+                                            @p.email
+                                        </dd>
+
+                                        <dt>
+                                            DOCUMENTO:
+                                        </dt>
+
+                                        <dd>
+                                            @p.documento.ToString()
+                                        </dd>
 
                                     </dl>
 

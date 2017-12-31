@@ -183,6 +183,7 @@ namespace BL
                 descripcion = pro.descripcion,
                 fechaVencimiento = pro.fechaVencimiento,
                 idNegocio = pro.idNegocio,
+                ofertaMaxima = pro.ofertaMaxima,
                 diasBeneficio = pro.diasBeneficio
             };
 

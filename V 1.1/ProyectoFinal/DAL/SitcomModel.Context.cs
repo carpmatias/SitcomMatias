@@ -532,5 +532,14 @@ namespace DAL
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<getPromociones2_Result>("getPromociones2", idNegocioParameter);
         }
+    
+        public virtual ObjectResult<getUltimaPromocionOtorgada_Result> getUltimaPromocionOtorgada(Nullable<int> idUsuario)
+        {
+            var idUsuarioParameter = idUsuario.HasValue ?
+                new ObjectParameter("idUsuario", idUsuario) :
+                new ObjectParameter("idUsuario", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<getUltimaPromocionOtorgada_Result>("getUltimaPromocionOtorgada", idUsuarioParameter);
+        }
     }
 }

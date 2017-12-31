@@ -120,9 +120,7 @@ namespace BL
   
 
               return db.Database.SqlQuery<ReservasEntities>("ConsultarLugaresHospedaje @fechaDesde=@pfechaDesde, @fechaHasta= @pfechaHasta , @cantPersonas=@pcantPersonas , @cantHabitaciones=@pcantHabitaciones , @tipoHospedaje= @ptipoHospedaje ", paramfechaDesde, paramfechaHasta,paramcantPersonas,paramcantHabitaciones, paramtipoHospedaje).ToList();
-
-
-
+              
           }
 
       }

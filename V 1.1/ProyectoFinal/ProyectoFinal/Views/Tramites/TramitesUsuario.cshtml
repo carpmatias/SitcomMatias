@@ -69,6 +69,14 @@
         }
     }
 
+    function corregir(idnegocio, idtiponegocio) {
+        if (idtiponegocio==1) //Si es Lugar de Hospedaje
+            window.location = "../Negocios/EditHospedaje/?idNegocio=" + idnegocio;
+        else
+            window.location = "../Negocios/EditComercio/?idNegocio=" + idnegocio;
+    }
+
+
     function ver(idtramite) {
         window.location = "../Tramites/VerTramite/" + idtramite;
     }
@@ -141,7 +149,7 @@
                             <div id="divTuristaRespNegocio" style="display:none">
                                 @helper verificarIdEstado(BussinesEntities.TramiteEntity t)
                         {
-                            if (t.EstadoTramite.idEstadoTramite == 1)
+                            if (t.EstadoTramite.idEstadoTramite == 1 || t.EstadoTramite.idEstadoTramite == 6)
                             {
                                             <button id="btnCancelarTramite" class="btn btn-red" onclick="cancelar(@t.idTramite)" style="font-size:10px; padding: 5px;">Cancelar <i class="fa fa-times"></i></button>
                             }
@@ -149,6 +157,12 @@
                             {
                                             <button id="btnCancelarTramite" class="btn btn-red" onclick="cancelar(@t.idTramite)" style="font-size:10px; padding: 5px;" disabled="disabled">Cancelar <i class="fa fa-times"></i></button>
                             }
+                            
+                            if (t.EstadoTramite.idEstadoTramite == 6)
+                            {
+                                            <button id="btnCorregir" class="btn btn-red" onclick="corregir(@t.idNegocio,@t.Negocio.idTipoNegocio)" style="font-size:10px; padding: 5px;">Corregir <i class="fa fa-times"></i></button>
+                            }
+                           
                     }
 
          @Html.Grid(Model).Columns(columns =>

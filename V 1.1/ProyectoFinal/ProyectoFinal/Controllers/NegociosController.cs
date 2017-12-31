@@ -635,6 +635,7 @@ namespace ProyectoFinal.Controllers
 
             return View(neg);
         }
+
         [HttpPost]
         public ActionResult EditHospedaje([Bind(Include = "nombre,descripcion")] NegocioEntity negocio,
                                           [Bind(Include = "localidadSeleccionada,barrio,calle,dpto,numero")] DomicilioEntity domEn,
