@@ -21,6 +21,7 @@ namespace ProyectoFinal.Controllers
         private NegocioEntity neg = new NegocioEntity();
         private DomicilioEntity dom = new DomicilioEntity();
         private PromocionesManager pm = new PromocionesManager();
+        private PersonasManager perm = new PersonasManager();
         
         public ActionResult Index()
         {
@@ -178,6 +179,72 @@ namespace ProyectoFinal.Controllers
             }
 
             return RedirectToAction("Index", "Home");
+        }
+
+
+        public ActionResult SolicitarBajaNegocio(int idNegocio)
+        {
+            ObtenerUsuarioActual();
+            NegocioEntity neg = nm.GetNegocioById(idNegocio);
+
+            Persona p = perm.GetPersonaByIdUsuario(usuarioActual.idUsuario);
+
+            ViewBag.Persona = p;
+
+            return View(neg);
+           
+        }
+        public ActionResult SolicitarRepublicacion(int idNegocio)
+        {
+            ObtenerUsuarioActual();
+            NegocioEntity neg = nm.GetNegocioById(idNegocio);
+
+            Persona p = perm.GetPersonaByIdUsuario(usuarioActual.idUsuario);
+
+            ViewBag.Persona = p;
+
+            return View(neg);
+
+        }
+        public ActionResult VerBajaNegocio(int id, int idTramite)
+        {
+            ObtenerUsuarioActual();
+            NegocioEntity neg = nm.GetNegocioById(id);
+
+            Persona p = perm.GetPersonaByIdUsuario((int)neg.idUsuario);
+
+            ViewBag.Persona = p;
+            ViewBag.IdTramite = idTramite;
+
+            return View(neg);
+        }
+        public ActionResult VerRepublicacionNegocio(int id, int idTramite)
+        {
+            ObtenerUsuarioActual();
+            NegocioEntity neg = nm.GetNegocioById(id);
+
+            Persona p = perm.GetPersonaByIdUsuario((int)neg.idUsuario);
+
+            ViewBag.Persona = p;
+            ViewBag.IdTramite = idTramite;
+
+            return View(neg);
+        }
+        public ActionResult BajaNegocio(int idNegocio)
+        {
+            ObtenerUsuarioActual();
+
+            nm.BajaNegocio(idNegocio, usuarioActual);
+
+            return RedirectToAction("NegociosUsuario");
+        }
+        public ActionResult RepublicarNegocio(int idNegocio)
+        {
+            ObtenerUsuarioActual();
+
+            nm.RepublicarNegocio(idNegocio, usuarioActual);
+
+            return RedirectToAction("NegociosUsuario");
         }
         public ActionResult NuevoLugarHospedaje([Bind(Include = "nombre,descripcion")] NegocioEntity negocio,
                                                 [Bind(Include = "localidadSeleccionada,barrio,calle,dpto,numero")] DomicilioEntity domEn,

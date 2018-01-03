@@ -185,6 +185,7 @@
     <EntitySetMapping Name="Negocio">
       <EntityTypeMapping TypeName="SitcomModel.Negocio">
         <MappingFragment StoreEntitySet="Negocio">
+          <ScalarProperty Name="estaAnulado" ColumnName="estaAnulado" />
           <ScalarProperty Name="idNegocio" ColumnName="idNegocio" />
           <ScalarProperty Name="nombre" ColumnName="nombre" />
           <ScalarProperty Name="descripcion" ColumnName="descripcion" />

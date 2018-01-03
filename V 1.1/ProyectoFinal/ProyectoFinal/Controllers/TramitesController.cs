@@ -70,6 +70,8 @@ namespace ProyectoFinal.Controllers
                 case 1: return RedirectToAction("EvalNegocio", "Negocios", new { id = tra.idNegocio, idTramite = tra.idTramite});
                 case 2: return RedirectToAction("EvalSolicitudModulo", "Reservas", new { id = tra.idNegocio, idTramite = tra.idTramite });
                 case 3: return RedirectToAction("EvalNegocio", "Negocios", new { id = tra.idNegocio, idTramite = tra.idTramite });
+                case 4: return RedirectToAction("VerBajaNegocio", "Negocios", new { id = tra.idNegocio, idTramite = tra.idTramite });
+                case 5: return RedirectToAction("VerRepublicacionNegocio", "Negocios", new { id = tra.idNegocio, idTramite = tra.idTramite });
                 default: return RedirectToAction("Index","Home");
            
             }

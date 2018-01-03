@@ -630,6 +630,10 @@
     <Content Include="Views\Promociones\PromocionOtorgada.cshtml" />
     <Content Include="Views\Promociones\PromocionesUsuario.cshtml" />
     <Content Include="Views\Promociones\ObtenerPromocion.cshtml" />
+    <Content Include="Views\Negocios\SolicitarBajaNegocio.cshtml" />
+    <Content Include="Views\Negocios\VerRepublicacionNegocio.cshtml" />
+    <Content Include="Views\Negocios\SolicitarRepublicacion.cshtml" />
+    <Content Include="Views\Negocios\VerBajaNegocio.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

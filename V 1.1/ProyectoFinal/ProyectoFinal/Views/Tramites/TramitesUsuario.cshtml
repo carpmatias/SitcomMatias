@@ -149,7 +149,7 @@
                             <div id="divTuristaRespNegocio" style="display:none">
                                 @helper verificarIdEstado(BussinesEntities.TramiteEntity t)
                         {
-                            if (t.EstadoTramite.idEstadoTramite == 1 || t.EstadoTramite.idEstadoTramite == 6)
+                            if ((t.EstadoTramite.idEstadoTramite == 1 || t.EstadoTramite.idEstadoTramite == 6) && t.idTipoTramite != 4)
                             {
                                             <button id="btnCancelarTramite" class="btn btn-red" onclick="cancelar(@t.idTramite)" style="font-size:10px; padding: 5px;">Cancelar <i class="fa fa-times"></i></button>
                             }

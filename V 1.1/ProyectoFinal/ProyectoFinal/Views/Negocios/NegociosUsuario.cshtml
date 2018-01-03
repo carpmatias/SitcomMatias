@@ -138,34 +138,87 @@
                             {
                                 if (n.idTipoNegocio == 1)
                                 {
-                                                <button id="btnVerNegocio" style="font-size:10px; padding: 5px;" onclick="window.location = '@Url.Action("VerHospedaje","Negocios",new { id = n.idNegocio })'" class="btn btn-xs btn-green tooltips" data-placement="top" data-original-title="Ver"><i class="fa fa-search"></i></button>
-    <button style="font-size:10px; padding: 5px;" onclick="window.location = '@Url.Action("EditHospedaje","Negocios", new { idNegocio = n.idNegocio })'" class="btn btn-xs btn-blue tooltips" data-placement="top" data-original-title="Editar"><i class="fa fa-edit"></i></button>
-    
-    <button style="font-size:10px; padding: 5px;" onclick="window.location = '@Url.Action("PromocionesNeg", "Promociones", new { idNegocio = n.idNegocio })'" class="btn btn-xs btn-blue tooltips" data-placement="top" data-original-title="Editar">Promociones</button>
-    <button style="font-size:10px; padding: 5px;" onclick="window.location = '@Url.Action("GestionReservas", "Reservas", new { idNegocio = n.idNegocio })'" class="btn btn-xs btn-blue tooltips" data-placement="top" data-original-title="Editar">Gestionar Reservas</button>
+                                    if(n.estaAnulado == null)
+                                    {
+                                        <button id="btnVerNegocio" style="font-size:10px; padding: 5px;" onclick="window.location = '@Url.Action("VerHospedaje","Negocios",new { id = n.idNegocio })'" class="btn btn-xs btn-green tooltips" data-placement="top" data-original-title="Ver"><i class="fa fa-search"></i></button>
+                                        <button style="font-size:10px; padding: 5px;" onclick="window.location = '@Url.Action("EditHospedaje","Negocios", new { idNegocio = n.idNegocio })'" class="btn btn-xs btn-blue tooltips" data-placement="top" data-original-title="Editar"><i class="fa fa-edit"></i></button>                                
+                                        <button style="font-size:10px; padding: 5px;" onclick="window.location = '@Url.Action("SolicitarBajaNegocio", "Negocios", new { idNegocio = n.idNegocio })'" class="btn btn-xs btn-warning tooltips" data-placement="top" data-original-title="DAR DE BAJA"><i class="fa fa-edit"></i></button>
+                                        <button style="font-size:10px; padding: 5px;" onclick="window.location = '@Url.Action("PromocionesNeg", "Promociones", new { idNegocio = n.idNegocio })'" class="btn btn-xs btn-blue tooltips" data-placement="top" data-original-title="Editar">Promociones</button>
+                                    }
+                                    else
+                                    { 
+                                        <button style="font-size:10px; padding: 5px;" onclick="window.location = '@Url.Action("SolicitarRepublicacion", "Negocios", new { idNegocio = n.idNegocio })'" class="btn btn-xs btn-blue tooltips" data-placement="top" data-original-title="Editar">RE-PUBLICAR</button>
+                                        <button id="btnVerNegocio" style="font-size:10px; padding: 5px;" disabled onclick="window.location = '@Url.Action("VerHospedaje","Negocios",new { id = n.idNegocio })'" class="btn btn-xs btn-green tooltips" data-placement="top" data-original-title="Ver"><i class="fa fa-search"></i></button>
+                                        <button style="font-size:10px; padding: 5px;" disabled onclick="window.location = '@Url.Action("EditHospedaje","Negocios", new { idNegocio = n.idNegocio })'" class="btn btn-xs btn-blue tooltips" data-placement="top" data-original-title="Editar"><i class="fa fa-edit"></i></button>
+                                        <button style="font-size:10px; padding: 5px;" disabled onclick="window.location = '@Url.Action("SolicitarBajaNegocio", "Negocios", new { idNegocio = n.idNegocio })'" class="btn btn-xs btn-warning tooltips" data-placement="top" data-original-title="DAR DE BAJA"><i class="fa fa-edit"></i></button>
+                                        <button style="font-size:10px; padding: 5px;" disabled onclick="window.location = '@Url.Action("PromocionesNeg", "Promociones", new { idNegocio = n.idNegocio })'" class="btn btn-xs btn-blue tooltips" data-placement="top" data-original-title="Editar">Promociones</button>                                        
+                                    }
+
+                                   
+                                    <button style="font-size:10px; padding: 5px;" onclick="window.location = '@Url.Action("GestionReservas", "Reservas", new { idNegocio = n.idNegocio })'" class="btn btn-xs btn-blue tooltips" data-placement="top" data-original-title="Editar">Gestionar Reservas</button>
 
                                 }
                                 else
                                 {
-                                    <button id="btnVerNegocio" style="font-size:10px; padding: 5px;" onclick="window.location = '@Url.Action("VerComercio","Negocios",new { id = n.idNegocio })'" class="btn btn-xs btn-green tooltips" data-placement="top" data-original-title="Ver"><i class="fa fa-search"></i></button>
-                         <button style="font-size:10px; padding: 5px;" onclick="window.location = '@Url.Action("EditComercio","Negocios", new { idNegocio = n.idNegocio })'" class="btn btn-xs btn-blue tooltips" data-placement="top" data-original-title="Editar"><i class="fa fa-edit"></i></button>
-                         <button style="font-size:10px; padding: 5px;" onclick="window.location = '@Url.Action("PromocionesNeg", "Promociones", new { idNegocio = n.idNegocio })'" class="btn btn-xs btn-blue tooltips" data-placement="top" data-original-title="Editar">Promociones</button>
-                         <button style="font-size:10px; padding: 5px;" disabled class="btn btn-xs btn-blue tooltips" data-placement="top" data-original-title="Editar">Gestionar Reservas</button>
-                                }
-}
+                                    if(n.estaAnulado == null)
+                                    {
+                                        <button id="btnVerNegocio" style="font-size:10px; padding: 5px;" onclick="window.location = '@Url.Action("VerComercio","Negocios",new { id = n.idNegocio })'" class="btn btn-xs btn-green tooltips" data-placement="top" data-original-title="Ver"><i class="fa fa-search"></i></button>
+                                        <button style="font-size:10px; padding: 5px;" onclick="window.location = '@Url.Action("EditComercio","Negocios", new { idNegocio = n.idNegocio })'" class="btn btn-xs btn-blue tooltips" data-placement="top" data-original-title="Editar"><i class="fa fa-edit"></i></button>
+                                        <button style="font-size:10px; padding: 5px;" onclick="window.location = '@Url.Action("SolicitarBajaNegocio","Negocios", new { idNegocio = n.idNegocio })'" class="btn btn-xs btn-warning tooltips" data-placement="top" data-original-title="DAR DE BAJA"><i class="fa fa-edit"></i></button>
+                                        <button style="font-size:10px; padding: 5px;" onclick="window.location = '@Url.Action("PromocionesNeg", "Promociones", new { idNegocio = n.idNegocio })'" class="btn btn-xs btn-blue tooltips" data-placement="top" data-original-title="Editar">Promociones</button>
+                                    }
+                                    else
+                                    {
+                                        <button style="font-size:10px; padding: 5px;" onclick="window.location = '@Url.Action("SolicitarRepublicacion", "Negocios", new { idNegocio = n.idNegocio })'" class="btn btn-xs btn-blue tooltips" data-placement="top" data-original-title="Editar">RE-PUBLICAR</button>
+                                        <button id="btnVerNegocio" style="font-size:10px; padding: 5px;" disabled onclick="window.location = '@Url.Action("VerComercio","Negocios",new { id = n.idNegocio })'" class="btn btn-xs btn-green tooltips" data-placement="top" data-original-title="Ver"><i class="fa fa-search"></i></button>
+                                        <button style="font-size:10px; padding: 5px;" disabled onclick="window.location = '@Url.Action("EditComercio","Negocios", new { idNegocio = n.idNegocio })'" class="btn btn-xs btn-blue tooltips" data-placement="top" data-original-title="Editar"><i class="fa fa-edit"></i></button>
+                                        <button style="font-size:10px; padding: 5px;" disabled onclick="window.location = '@Url.Action("SolicitarBajaNegocio","Negocios", new { idNegocio = n.idNegocio })'" class="btn btn-xs btn-warning tooltips" data-placement="top" data-original-title="DAR DE BAJA"><i class="fa fa-edit"></i></button>
+                                        <button style="font-size:10px; padding: 5px;" disabled onclick="window.location = '@Url.Action("PromocionesNeg", "Promociones", new { idNegocio = n.idNegocio })'" class="btn btn-xs btn-blue tooltips" data-placement="top" data-original-title="Editar">Promociones</button>
+                                    }
 
+
+                                    
+                                    <button style="font-size:10px; padding: 5px;" disabled class="btn btn-xs btn-blue tooltips" data-placement="top" data-original-title="Editar">Gestionar Reservas</button>
+                                }
+                            }
+                            
+                            @helper estado(DAL.Negocio n)
+                            {
+    
+                                if(n.estaAnulado == null)
+                                { 
+                                    <span style="font-weight:normal;">PUBLICADO</span>
+                                }
+                                else
+                                {
+                                    if ((bool)n.estaAnulado)
+                                    {
+                                       <span style="font-weight:normal;">ANULADO</span>
+                                    }
+                                    else
+                                    {
+                                        <span style="font-weight:normal;">ANULADO</span>
+                                    }
+                                }
+                             }
 
                             @Html.Grid(Model).Columns(columns =>
         {
             //columns.Add(model => model.fechaAlta).Titled("Fecha Alta");
             columns.Add(model => model.nombre).Titled("Nombre").SetWidth(30);
             columns.Add(model => model.TipoDeNegocio.nombre).Titled("Tipo").SetWidth(30);
+            columns.Add().Titled("Estado")
+                   .Encoded(false)
+                   .Sanitized(false)
+                   .SetWidth(40)
+                   .RenderValueAs(n => estado(n));
             columns.Add(model => model.idNegocio)
                 .Titled("Acción")
                 .Encoded(false)
                 .Sanitized(false)
                 .SetWidth(40)
                 .RenderValueAs(n => botonVer(n));
+            
         }).WithPaging(10).Sortable(true)
 
 

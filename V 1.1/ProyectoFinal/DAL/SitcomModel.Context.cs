@@ -351,7 +351,7 @@ namespace DAL
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<decimal>>("Reserva_i", idPersonaSolicitanteParameter, idNegocioParameter, idSolicitudParameter);
         }
     
-        public virtual int altaPromocion(Nullable<int> idNegocio, Nullable<System.DateTime> fechaVencimiento, string titulo, string descripcion, Nullable<int> diasBeneficio)
+        public virtual int altaPromocion(Nullable<int> idNegocio, Nullable<System.DateTime> fechaVencimiento, string titulo, string descripcion, Nullable<int> diasBeneficio, Nullable<int> ofertaMaxima)
         {
             var idNegocioParameter = idNegocio.HasValue ?
                 new ObjectParameter("idNegocio", idNegocio) :
@@ -373,7 +373,11 @@ namespace DAL
                 new ObjectParameter("diasBeneficio", diasBeneficio) :
                 new ObjectParameter("diasBeneficio", typeof(int));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("altaPromocion", idNegocioParameter, fechaVencimientoParameter, tituloParameter, descripcionParameter, diasBeneficioParameter);
+            var ofertaMaximaParameter = ofertaMaxima.HasValue ?
+                new ObjectParameter("ofertaMaxima", ofertaMaxima) :
+                new ObjectParameter("ofertaMaxima", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("altaPromocion", idNegocioParameter, fechaVencimientoParameter, tituloParameter, descripcionParameter, diasBeneficioParameter, ofertaMaximaParameter);
         }
     
         public virtual int cancelPromociones(Nullable<int> idPromocion)

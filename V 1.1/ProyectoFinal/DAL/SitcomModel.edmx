@@ -209,6 +209,7 @@
           <Property Name="idUsuario" Type="int" />
           <Property Name="estaAprobado" Type="bit" />
           <Property Name="idNegocioModif" Type="int" />
+          <Property Name="estaAnulado" Type="bit" />
         </EntityType>
         <EntityType Name="Paginas">
           <Key>
@@ -1125,6 +1126,7 @@
           <Parameter Name="titulo" Type="varchar" Mode="In" />
           <Parameter Name="descripcion" Type="varchar" Mode="In" />
           <Parameter Name="diasBeneficio" Type="int" Mode="In" />
+          <Parameter Name="ofertaMaxima" Type="int" Mode="In" />
         </Function>
         <Function Name="asignarEncuesta" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="idTipoEncuesta" Type="int" Mode="In" />
@@ -1765,6 +1767,7 @@
           <NavigationProperty Name="Tramite" Relationship="Self.FK_Tramite_Negocio" FromRole="Negocio" ToRole="Tramite" />
           <NavigationProperty Name="Promociones" Relationship="SitcomModel.FK_Promociones_Negocio" FromRole="Negocio" ToRole="Promociones" />
           <NavigationProperty Name="EncuestasAsignadas" Relationship="SitcomModel.FK_EncuestasAsignadas_Negocio" FromRole="Negocio" ToRole="EncuestasAsignadas" />
+          <Property Name="estaAnulado" Type="Boolean" />
         </EntityType>
         <EntityType Name="Paginas">
           <Key>
@@ -2875,6 +2878,7 @@
             <Parameter Name="titulo" Mode="In" Type="String" />
             <Parameter Name="descripcion" Mode="In" Type="String" />
             <Parameter Name="diasBeneficio" Mode="In" Type="Int32" />
+            <Parameter Name="ofertaMaxima" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="cancelPromociones">
           <Parameter Name="idPromocion" Mode="In" Type="Int32" />
@@ -2953,7 +2957,7 @@
           <Parameter Name="idNegocio" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="getUltimaPromocionOtorgada" ReturnType="Collection(SitcomModel.getUltimaPromocionOtorgada_Result)">
-            <Parameter Name="idUsuario" Mode="In" Type="Int32" />
+          <Parameter Name="idUsuario" Mode="In" Type="Int32" />
           </FunctionImport>
         </EntityContainer>
         <ComplexType Name="cambiarHabitacionesNuevoHotel_Result">
@@ -3475,6 +3479,7 @@
           <EntitySetMapping Name="Negocio">
             <EntityTypeMapping TypeName="SitcomModel.Negocio">
               <MappingFragment StoreEntitySet="Negocio">
+                <ScalarProperty Name="estaAnulado" ColumnName="estaAnulado" />
                 <ScalarProperty Name="idNegocio" ColumnName="idNegocio" />
                 <ScalarProperty Name="nombre" ColumnName="nombre" />
                 <ScalarProperty Name="descripcion" ColumnName="descripcion" />

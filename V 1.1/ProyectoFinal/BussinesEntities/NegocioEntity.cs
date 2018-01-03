@@ -34,6 +34,8 @@ namespace BussinesEntities
         public Nullable<int> idTipoNegocio { get; set; }
         public Nullable<int> idUsuario { get; set; }
 
+        public Nullable<bool> estaAnulado { get; set; }
+
         public Nullable<bool> estaAprobado { get; set; }
         public Nullable<int> idNegocioModif { get; set; }
     

@@ -158,7 +158,6 @@ namespace BL
 
             return sucursales;
         }
-
         public Solicitud SolicitudEntityToSolicitud(SolicitudEntity sol)
         {
             Solicitud solicitud = new Solicitud()
@@ -174,7 +173,6 @@ namespace BL
 
             return solicitud;
         }
-
         public Promociones PromocionesEntityToPromocion(PromocionesEntity pro)
         {
             Promociones p = new Promociones()

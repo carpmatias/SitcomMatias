@@ -108,6 +108,51 @@ namespace BL
 
             }
         }
+
+        public void RepublicarNegocio(int idNegocio, UsuarioEntity usuarioActual)
+        {
+            using(SitcomEntities db = new SitcomEntities())
+            {
+                Tramite t = new Tramite()
+                {
+                    idUsuarioSolicitante = usuarioActual.idUsuario,
+                    fechaAlta = DateTime.Now,
+                    idTipoTramite = 5,
+                    idNegocio = idNegocio,
+                    idEstadoTramite = 1
+                };
+
+                db.Tramite.Add(t);
+
+                db.SaveChanges();
+            }
+        }
+
+        public void BajaNegocio(int idNegocio, UsuarioEntity usuarioActual)
+        {
+            using (SitcomEntities db = new SitcomEntities())
+            {
+                var result = (from neg in db.Negocio
+                              where neg.idNegocio == idNegocio
+                              select neg).FirstOrDefault();
+
+                result.estaAnulado = true;
+
+                Tramite t = new Tramite()
+                {
+                    idUsuarioSolicitante = usuarioActual.idUsuario,
+                    fechaAlta = DateTime.Now,
+                    idTipoTramite = 4,
+                    idNegocio = idNegocio,
+                    idEstadoTramite = 1
+                };
+
+                db.Tramite.Add(t);
+
+                db.SaveChanges();
+            }
+        }
+
         public FotosNegocio GetFotoNegocioById(int id)
         {
             using (var db = new SitcomEntities())
@@ -127,6 +172,7 @@ namespace BL
                 var result = (from n in db.Negocio
                               where n.estaAprobado == true
                               && n.idTipoNegocio == tipoNegocio
+                              && n.estaAnulado != true
                               select new NegocioEntity()
                               {
                                   idNegocio = n.idNegocio,

@@ -35,6 +35,7 @@ namespace DAL
         public Nullable<int> idUsuario { get; set; }
         public Nullable<bool> estaAprobado { get; set; }
         public Nullable<int> idNegocioModif { get; set; }
+        public Nullable<bool> estaAnulado { get; set; }
     
         public virtual ICollection<Comercio> Comercio { get; set; }
         public virtual ICollection<FotosNegocio> FotosNegocio { get; set; }

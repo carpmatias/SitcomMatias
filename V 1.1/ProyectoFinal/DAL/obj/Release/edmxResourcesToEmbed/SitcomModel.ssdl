@@ -204,6 +204,7 @@
     <Property Name="idUsuario" Type="int" />
     <Property Name="estaAprobado" Type="bit" />
     <Property Name="idNegocioModif" Type="int" />
+    <Property Name="estaAnulado" Type="bit" />
   </EntityType>
   <EntityType Name="Paginas">
     <Key>
@@ -1120,6 +1121,7 @@
     <Parameter Name="titulo" Type="varchar" Mode="In" />
     <Parameter Name="descripcion" Type="varchar" Mode="In" />
     <Parameter Name="diasBeneficio" Type="int" Mode="In" />
+    <Parameter Name="ofertaMaxima" Type="int" Mode="In" />
   </Function>
   <Function Name="asignarEncuesta" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="idTipoEncuesta" Type="int" Mode="In" />

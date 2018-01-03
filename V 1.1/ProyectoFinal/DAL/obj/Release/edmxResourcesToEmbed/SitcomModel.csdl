@@ -228,6 +228,7 @@
     <NavigationProperty Name="Tramite" Relationship="Self.FK_Tramite_Negocio" FromRole="Negocio" ToRole="Tramite" />
     <NavigationProperty Name="Promociones" Relationship="SitcomModel.FK_Promociones_Negocio" FromRole="Negocio" ToRole="Promociones" />
     <NavigationProperty Name="EncuestasAsignadas" Relationship="SitcomModel.FK_EncuestasAsignadas_Negocio" FromRole="Negocio" ToRole="EncuestasAsignadas" />
+    <Property Name="estaAnulado" Type="Boolean" />
   </EntityType>
   <EntityType Name="Paginas">
     <Key>
@@ -1338,6 +1339,7 @@
       <Parameter Name="titulo" Mode="In" Type="String" />
       <Parameter Name="descripcion" Mode="In" Type="String" />
       <Parameter Name="diasBeneficio" Mode="In" Type="Int32" />
+      <Parameter Name="ofertaMaxima" Mode="In" Type="Int32" />
     </FunctionImport>
     <FunctionImport Name="cancelPromociones">
       <Parameter Name="idPromocion" Mode="In" Type="Int32" />
