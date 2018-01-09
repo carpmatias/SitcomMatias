@@ -1420,6 +1420,15 @@
     <FunctionImport Name="getUltimaPromocionOtorgada" ReturnType="Collection(SitcomModel.getUltimaPromocionOtorgada_Result)">
       <Parameter Name="idUsuario" Mode="In" Type="Int32" />
     </FunctionImport>
+    <EntitySet Name="TiposRespuesta" EntityType="SitcomModel.TiposRespuesta" />
+    <AssociationSet Name="FK_Preguntas_TiposRespuesta" Association="SitcomModel.FK_Preguntas_TiposRespuesta">
+      <End Role="TiposRespuesta" EntitySet="TiposRespuesta" />
+      <End Role="Preguntas" EntitySet="Preguntas" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Preguntas_ClasifPregunta" Association="SitcomModel.FK_Preguntas_ClasifPregunta">
+      <End Role="ClasifPregunta" EntitySet="ClasifPregunta" />
+      <End Role="Preguntas" EntitySet="Preguntas" />
+    </AssociationSet>
   </EntityContainer>
   <ComplexType Name="cambiarHabitacionesNuevoHotel_Result">
     <Property Type="Int32" Name="Column1" Nullable="true" />
@@ -1483,6 +1492,9 @@
     <NavigationProperty Name="Preguntas1" Relationship="SitcomModel.FK_Preguntas_Preguntas" FromRole="Preguntas" ToRole="Preguntas1" />
     <NavigationProperty Name="Preguntas2" Relationship="SitcomModel.FK_Preguntas_Preguntas" FromRole="Preguntas1" ToRole="Preguntas" />
     <NavigationProperty Name="RtasXEncuestasAsignadas" Relationship="SitcomModel.FK_RtasXEncuestasAsignadas_Preguntas" FromRole="Preguntas" ToRole="RtasXEncuestasAsignadas" />
+    <Property Name="idTipoRespuesta" Type="Int32" />
+    <NavigationProperty Name="TiposRespuesta" Relationship="SitcomModel.FK_Preguntas_TiposRespuesta" FromRole="Preguntas" ToRole="TiposRespuesta" />
+    <NavigationProperty Name="ClasifPregunta" Relationship="SitcomModel.FK_Preguntas_ClasifPregunta" FromRole="Preguntas" ToRole="ClasifPregunta" />
   </EntityType>
   <EntityType Name="Promociones">
     <Key>
@@ -1685,6 +1697,7 @@
     <Property Name="idClasifPregunta" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="descripcion" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Preguntas" Relationship="SitcomModel.FK_Preguntas_ClasifPregunta" FromRole="ClasifPregunta" ToRole="Preguntas" />
   </EntityType>
   <EntityType Name="RtasXEncuestasAsignadas">
     <Key>
@@ -1750,4 +1763,37 @@
     <Property Type="String" Name="CODIGO" Nullable="false" MaxLength="8" />
     <Property Type="String" Name="ESTADO" Nullable="true" MaxLength="10" />
   </ComplexType>
+  <EntityType Name="TiposRespuesta">
+    <Key>
+      <PropertyRef Name="idTipoRespuesta" />
+    </Key>
+    <Property Name="idTipoRespuesta" Type="Int32" Nullable="false" />
+    <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="descripcion" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Preguntas" Relationship="SitcomModel.FK_Preguntas_TiposRespuesta" FromRole="TiposRespuesta" ToRole="Preguntas" />
+  </EntityType>
+  <Association Name="FK_Preguntas_TiposRespuesta">
+    <End Type="SitcomModel.TiposRespuesta" Role="TiposRespuesta" Multiplicity="0..1" />
+    <End Type="SitcomModel.Preguntas" Role="Preguntas" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TiposRespuesta">
+        <PropertyRef Name="idTipoRespuesta" />
+      </Principal>
+      <Dependent Role="Preguntas">
+        <PropertyRef Name="idTipoRespuesta" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Preguntas_ClasifPregunta">
+    <End Type="SitcomModel.ClasifPregunta" Role="ClasifPregunta" Multiplicity="0..1" />
+    <End Type="SitcomModel.Preguntas" Role="Preguntas" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ClasifPregunta">
+        <PropertyRef Name="idClasifPregunta" />
+      </Principal>
+      <Dependent Role="Preguntas">
+        <PropertyRef Name="idClasifPregunta" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
 </Schema>

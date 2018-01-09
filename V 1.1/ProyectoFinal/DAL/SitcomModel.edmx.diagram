@@ -107,10 +107,13 @@
         <AssociationConnector Association="SitcomModel.FK_Preguntas_Encuestas1" />
         <AssociationConnector Association="SitcomModel.FK_EncuestasAsignadas_Negocio" />
         <AssociationConnector Association="SitcomModel.FK_Preguntas_Preguntas" />
-        <EntityTypeShape EntityType="SitcomModel.ClasifPregunta" Width="1.5" PointX="0.75" PointY="3.75" />
+        <EntityTypeShape EntityType="SitcomModel.ClasifPregunta" Width="1.5" PointX="1.375" PointY="6" />
         <EntityTypeShape EntityType="SitcomModel.RtasXEncuestasAsignadas" Width="1.5" PointX="10.875" PointY="24.625" />
         <AssociationConnector Association="SitcomModel.FK_RtasXEncuestasAsignadas_EncuestasAsignadas" />
         <AssociationConnector Association="SitcomModel.FK_RtasXEncuestasAsignadas_Preguntas" />
+        <EntityTypeShape EntityType="SitcomModel.TiposRespuesta" Width="1.5" PointX="5.875" PointY="5.375" />
+        <AssociationConnector Association="SitcomModel.FK_Preguntas_TiposRespuesta" />
+        <AssociationConnector Association="SitcomModel.FK_Preguntas_ClasifPregunta" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -1,27 +1,30 @@
-﻿@model IEnumerable<DAL.Encuestas>
+﻿@model IEnumerable<BussinesEntities.EncuestaEntityIndex>
 
 @{
     ViewBag.Title = "Index";
 }
 
-<h2>Tus Encuestas</h2>
+<h2>Index</h2>
 
 <p>
-    @Html.ActionLink("NUEVA ENCUESTA", "Create")
+    @Html.ActionLink("Create New", "Create")
 </p>
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.nombre)
+            @Html.DisplayNameFor(model => model.FirstOrDefault().NOMBRE)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.descripcion)
+            @Html.DisplayNameFor(model => model.FirstOrDefault().TIPO)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.TiposEncuesta.nombre)
+            @Html.DisplayNameFor(model => model.FirstOrDefault().DESCRIPCION)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Preguntas.textoPregunta)
+            @Html.DisplayNameFor(model => model.FirstOrDefault().VENCIMIENTO)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstOrDefault().ESTADO)
         </th>
         <th></th>
     </tr>
@@ -29,18 +32,24 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.nombre)
+            @Html.DisplayFor(modelItem => item.NOMBRE)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.descripcion)
+            @Html.DisplayFor(modelItem => item.TIPO)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.TiposEncuesta.nombre)
+            @Html.DisplayFor(modelItem => item.DESCRIPCION)
         </td>
         <td>
-            @Html.ActionLink("Editar", "Edit", new { id=item.idEncuesta }) |
-            @Html.ActionLink("Detalle", "Details", new { id=item.idEncuesta }) |
-            @Html.ActionLink("Eliminar", "Delete", new { id=item.idEncuesta })
+            @Html.DisplayFor(modelItem => item.VENCIMIENTO)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ESTADO)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.idEncuesta }) |
+            @Html.ActionLink("Details", "Details", new { id=item.idEncuesta }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.idEncuesta })
         </td>
     </tr>
 }

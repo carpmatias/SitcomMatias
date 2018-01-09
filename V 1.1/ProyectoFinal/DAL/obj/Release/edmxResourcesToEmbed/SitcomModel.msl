@@ -471,6 +471,7 @@
     <EntitySetMapping Name="Preguntas">
       <EntityTypeMapping TypeName="SitcomModel.Preguntas">
         <MappingFragment StoreEntitySet="Preguntas">
+          <ScalarProperty Name="idTipoRespuesta" ColumnName="idTipoRespuesta" />
           <ScalarProperty Name="idClasifPregunta" ColumnName="idClasifPregunta" />
           <ScalarProperty Name="idEncuesta" ColumnName="idEncuesta" />
           <ScalarProperty Name="textoPregunta" ColumnName="textoPregunta" />
@@ -620,5 +621,14 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
+    <EntitySetMapping Name="TiposRespuesta">
+      <EntityTypeMapping TypeName="SitcomModel.TiposRespuesta">
+        <MappingFragment StoreEntitySet="TiposRespuesta">
+          <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+          <ScalarProperty Name="nombre" ColumnName="nombre" />
+          <ScalarProperty Name="idTipoRespuesta" ColumnName="idTipoRespuesta" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>

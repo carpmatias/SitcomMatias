@@ -61,6 +61,11 @@
             event.preventDefault();
             window.location = '@Url.Action("NegociosUsuario","Negocios")';
         });
+
+        $("#btnEncuestas").click(function (event) {
+            window.location = '@Url.Action("Encuestas","EncuestasIndex")';
+            event.preventDefault();
+        });
     });
 
     function cancelar(idtramite) {

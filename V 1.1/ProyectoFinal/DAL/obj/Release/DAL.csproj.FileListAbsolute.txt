@@ -26,4 +26,3 @@ E:\Facultad\5to Año\Proyecto Final\Sitcom Matias (Final)\V 1.1\ProyectoFinal\DA
 E:\Facultad\5to Año\Proyecto Final\Sitcom Matias (Final)\V 1.1\ProyectoFinal\DAL\bin\Release\EntityFramework.SqlServer.xml
 E:\Facultad\5to Año\Proyecto Final\Sitcom Matias (Final)\V 1.1\ProyectoFinal\DAL\obj\Release\DAL.dll
 E:\Facultad\5to Año\Proyecto Final\Sitcom Matias (Final)\V 1.1\ProyectoFinal\DAL\obj\Release\DAL.pdb
-E:\Facultad\5to Año\Proyecto Final\Sitcom Matias (Final)\V 1.1\ProyectoFinal\DAL\obj\Release\DAL.csprojResolveAssemblyReference.cache

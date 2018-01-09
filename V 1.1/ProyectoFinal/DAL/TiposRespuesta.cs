@@ -12,14 +12,14 @@ namespace DAL
     using System;
     using System.Collections.Generic;
     
-    public partial class ClasifPregunta
+    public partial class TiposRespuesta
     {
-        public ClasifPregunta()
+        public TiposRespuesta()
         {
             this.Preguntas = new HashSet<Preguntas>();
         }
     
-        public int idClasifPregunta { get; set; }
+        public int idTipoRespuesta { get; set; }
         public string nombre { get; set; }
         public string descripcion { get; set; }
     

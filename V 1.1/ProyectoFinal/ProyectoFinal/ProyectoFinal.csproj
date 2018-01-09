@@ -175,15 +175,16 @@
     <Compile Include="Controllers\ComplejoController.cs" />
     <Compile Include="Controllers\DomicilioController.cs" />
     <Compile Include="Controllers\DptoOCabanaController.cs" />
+    <Compile Include="Controllers\EncuestasController.cs" />
     <Compile Include="Controllers\HabitacionesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\HotelController.cs" />
     <Compile Include="Controllers\NegociosController.cs" />
     <Compile Include="Controllers\PersonaController.cs" />
+    <Compile Include="Controllers\PreguntasController.cs" />
     <Compile Include="Controllers\ReservasController.cs" />
     <Compile Include="Controllers\TipoHabitacionController.cs" />
     <Compile Include="Controllers\TramitesController.cs" />
-    <Compile Include="Controllers\EncuestasController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -617,11 +618,6 @@
     <Content Include="Views\Reservas\BuscarCliente.cshtml" />
     <Content Include="Views\Reservas\BuscarHabitacionesDisponibles.cshtml" />
     <Content Include="Views\Reservas\PlanoReservas.cshtml" />
-    <Content Include="Views\Encuestas\Create.cshtml" />
-    <Content Include="Views\Encuestas\Delete.cshtml" />
-    <Content Include="Views\Encuestas\Details.cshtml" />
-    <Content Include="Views\Encuestas\Edit.cshtml" />
-    <Content Include="Views\Encuestas\Index.cshtml" />
     <Content Include="Views\Promociones\NuevaPromocion.cshtml" />
     <Content Include="Views\Promociones\Delete.cshtml" />
     <Content Include="Views\Promociones\Edit.cshtml" />
@@ -634,6 +630,17 @@
     <Content Include="Views\Negocios\VerRepublicacionNegocio.cshtml" />
     <Content Include="Views\Negocios\SolicitarRepublicacion.cshtml" />
     <Content Include="Views\Negocios\VerBajaNegocio.cshtml" />
+    <Content Include="Views\Encuestas\Create.cshtml" />
+    <Content Include="Views\Encuestas\Delete.cshtml" />
+    <Content Include="Views\Encuestas\Details.cshtml" />
+    <Content Include="Views\Encuestas\EditEncuesta.cshtml" />
+    <Content Include="Views\Encuestas\Index.cshtml" />
+    <Content Include="Views\Encuestas\EncuestasIndex.cshtml" />
+    <Content Include="Views\Encuestas\NuevaPregunta.cshtml" />
+    <Content Include="Views\Preguntas\Delete.cshtml" />
+    <Content Include="Views\Preguntas\Details.cshtml" />
+    <Content Include="Views\Preguntas\Edit.cshtml" />
+    <Content Include="Views\Encuestas\PreguntasEncuesta.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

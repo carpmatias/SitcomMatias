@@ -7,18 +7,21 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using DAL;
+using BussinesEntities;
+using BL;
 
 namespace ProyectoFinal
 {
     public class EncuestasController : Controller
     {
         private SitcomEntities db = new SitcomEntities();
+        private EncuestasManager em = new EncuestasManager();
 
         // GET: /Encuestas/
-        public ActionResult Index()
+        public ActionResult EncuestasIndex()
         {
-            var encuestas = db.Encuestas.Include(e => e.TiposEncuesta).Include(e => e.Preguntas);
-            return View(encuestas.ToList());
+            List<EncuestaEntityIndex> encuestas = em.GetAllEncuestas();
+            return View(encuestas);
         }
 
         // GET: /Encuestas/Details/5
@@ -41,6 +44,7 @@ namespace ProyectoFinal
         {
             ViewBag.idTipoEncuesta = new SelectList(db.TiposEncuesta, "idTipoEncuesta", "nombre");
             ViewBag.idEncuesta = new SelectList(db.Preguntas, "idPregunta", "textoPregunta");
+            ViewBag.idEncuesta = new SelectList(db.TiposEncuesta, "idTipoEncuesta", "nombre");
             return View();
         }
 
@@ -49,7 +53,7 @@ namespace ProyectoFinal
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include="idEncuesta,nombre,descripcion,idTipoEncuesta")] Encuestas encuestas)
+        public ActionResult Create([Bind(Include="idEncuesta,nombre,descripcion,idTipoEncuesta,fechaVencimiento")] Encuestas encuestas)
         {
             if (ModelState.IsValid)
             {
@@ -60,24 +64,28 @@ namespace ProyectoFinal
 
             ViewBag.idTipoEncuesta = new SelectList(db.TiposEncuesta, "idTipoEncuesta", "nombre", encuestas.idTipoEncuesta);
             ViewBag.idEncuesta = new SelectList(db.Preguntas, "idPregunta", "textoPregunta", encuestas.idEncuesta);
+            ViewBag.idEncuesta = new SelectList(db.TiposEncuesta, "idTipoEncuesta", "nombre", encuestas.idEncuesta);
             return View(encuestas);
         }
 
         // GET: /Encuestas/Edit/5
-        public ActionResult Edit(int? id)
+        public ActionResult EditEncuesta(int? idEncuesta)
         {
-            if (id == null)
+            if (idEncuesta == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Encuestas encuestas = db.Encuestas.Find(id);
-            if (encuestas == null)
+
+            EncuestaEntity en = em.GetEncuestaById(idEncuesta);
+            if (en == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.idTipoEncuesta = new SelectList(db.TiposEncuesta, "idTipoEncuesta", "nombre", encuestas.idTipoEncuesta);
-            ViewBag.idEncuesta = new SelectList(db.Preguntas, "idPregunta", "textoPregunta", encuestas.idEncuesta);
-            return View(encuestas);
+
+            ViewBag.idTipoEncuesta = new SelectList(db.TiposEncuesta, "idTipoEncuesta", "nombre", en.idTipoEncuesta);
+            //ViewBag.idEncuesta = new SelectList(db.TiposEncuesta, "idTipoEncuesta", "nombre", en.idEncuesta);
+
+            return View(en);
         }
 
         // POST: /Encuestas/Edit/5
@@ -85,17 +93,16 @@ namespace ProyectoFinal
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include="idEncuesta,nombre,descripcion,idTipoEncuesta")] Encuestas encuestas)
+        public ActionResult EditEncuesta([Bind(Include="idEncuesta,nombre,descripcion,idTipoEncuesta,fechaVencimiento")] EncuestaEntity en)
         {
-            if (ModelState.IsValid)
+            if(ModelState.IsValid)
             {
-                db.Entry(encuestas).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                em.EditEncuesta(en);
+                return RedirectToAction("EncuestasIndex");
             }
-            ViewBag.idTipoEncuesta = new SelectList(db.TiposEncuesta, "idTipoEncuesta", "nombre", encuestas.idTipoEncuesta);
-            ViewBag.idEncuesta = new SelectList(db.Preguntas, "idPregunta", "textoPregunta", encuestas.idEncuesta);
-            return View(encuestas);
+            ViewBag.idTipoEncuesta = new SelectList(db.TiposEncuesta, "idTipoEncuesta", "nombre", en.idTipoEncuesta);
+
+            return View(en);
         }
 
         // GET: /Encuestas/Delete/5
@@ -122,6 +129,44 @@ namespace ProyectoFinal
             db.Encuestas.Remove(encuestas);
             db.SaveChanges();
             return RedirectToAction("Index");
+        }
+
+        public ActionResult PreguntasEncuesta(int idEncuesta)
+        {
+            List<PreguntasEntity> pregsEncuesta = em.GetPreguntasEncuesta(idEncuesta);
+
+            ViewBag.IdEncuesta = idEncuesta;
+            return View(pregsEncuesta);
+        }
+
+         // GET: /Preguntas/Create
+        public ActionResult NuevaPregunta(int idEncuesta)
+        {
+
+            ViewBag.idTipoRespuesta = new SelectList(db.TiposRespuesta, "idTipoRespuesta", "nombre");
+            ViewBag.idClasifPregunta = new SelectList(db.ClasifPregunta, "idClasifPregunta", "nombre");
+            ViewBag.IdEncuesta = idEncuesta;
+            return View();
+        }
+
+        // POST: /Encuestas/Create
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult NuevaPregunta(PreguntasEntity pregunta)
+        {
+            if (ModelState.IsValid)
+            {
+                em.CrearPregunta(pregunta);
+                return RedirectToAction("PreguntasEncuesta", new { idEncuesta = pregunta.idEncuesta });
+            }
+
+            ViewBag.idTipoRespuesta = new SelectList(db.TiposRespuesta, "idTipoRespuesta", "nombre");
+            ViewBag.idClasifPregunta = new SelectList(db.ClasifPregunta, "idClasifPregunta", "nombre");
+            ViewBag.IdEncuesta = pregunta.idEncuesta;
+            
+            return View(pregunta);
         }
 
         protected override void Dispose(bool disposing)

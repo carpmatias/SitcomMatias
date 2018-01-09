@@ -204,7 +204,6 @@ namespace ProyectoFinal.Controllers
             ViewBag.Persona = p;
 
             return View(neg);
-
         }
         public ActionResult VerBajaNegocio(int id, int idTramite)
         {

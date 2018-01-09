@@ -243,6 +243,9 @@
     <Compile Include="TiposEncuesta.cs">
       <DependentUpon>SitcomModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="TiposRespuesta.cs">
+      <DependentUpon>SitcomModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="TipoTramite.cs">
       <DependentUpon>SitcomModel.tt</DependentUpon>
     </Compile>

@@ -75,6 +75,7 @@ namespace DAL
         public virtual DbSet<TiposEncuesta> TiposEncuesta { get; set; }
         public virtual DbSet<ClasifPregunta> ClasifPregunta { get; set; }
         public virtual DbSet<RtasXEncuestasAsignadas> RtasXEncuestasAsignadas { get; set; }
+        public virtual DbSet<TiposRespuesta> TiposRespuesta { get; set; }
     
         public virtual int cambiarCasaODptoNuevoComplejo(Nullable<int> idNegocioNuevo)
         {

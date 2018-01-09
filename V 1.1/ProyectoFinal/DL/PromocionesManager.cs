@@ -130,7 +130,6 @@ namespace BL
         {
             using (SitcomEntities db = new SitcomEntities())
             {
-
                 SqlParameter paramCodigo = new SqlParameter("@pCodigo", codigo);
                 
                 int result = db.Database.SqlQuery<Int32>("regUsoPromocion @codigo=@pCodigo", paramCodigo).FirstOrDefault();

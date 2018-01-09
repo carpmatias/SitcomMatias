@@ -12,38 +12,38 @@
     var cantPromos = @ViewBag.CantPromos
 
     $(document).ready(function () {
-        
 
-        if (perfil == 1)
-        {
+
+        if (perfil == 1) {
             $("#btnTusTramites").show();
             $("#btnTusNegocios").hide();
             $("#btnTusTramitesAsignados").hide();
             $("#btnTodosLosTramites").hide();
             $("#tabSecretaria").hide();
             $("#btnTusPromociones").show();
+            $("#btnEncuestas").hide();
         }
 
-        if (perfil == 2)
-        {
+        if (perfil == 2) {
             $("#btnTusTramites").show();
             $("#btnTusNegocios").show();
             $("#btnTusTramitesAsignados").hide();
             $("#btnTodosLosTramites").hide();
             $("#tabSecretaria").hide();
             $("#btnTusPromociones").hide();
+            $("#btnEncuestas").hide();
         }
 
-        if (perfil == 3)
-        {
+        if (perfil == 3) {
             $("#btnTusTramites").show();
             $("#btnTusNegocios").hide();
             $("#btnTusTramitesAsignados").show();
             $("#btnTodosLosTramites").show();
             $("#tabSecretaria").show();
             $("#btnTusPromociones").hide();
+            $("#btnEncuestas").show();
         }
-              
+
 
         if (mensaje != "") {
             alert(mensaje);
@@ -71,6 +71,11 @@
 
         $("#btnTusPromociones").click(function (event) {
             window.location = '@Url.Action("PromocionesUsuario","Promociones")';
+            event.preventDefault();
+        });
+
+        $("#btnEncuestas").click(function (event) {
+            window.location = '@Url.Action("EncuestasIndex", "Encuestas")';
             event.preventDefault();
         });
     });
@@ -132,12 +137,15 @@
                                 <span class="glyphicon glyphicon-user" aria-hidden="true"></span> TODOS LOS TRAMITES
                             </a>
 
+                            <a href="" class="btn btn-default" id="btnEncuestas" style="width:250px;">
+                                ENCUESTAS
+                            </a>
+
                         </div>
 
                     </div>
 
                  </div>
-
       </div>
 
 </section>

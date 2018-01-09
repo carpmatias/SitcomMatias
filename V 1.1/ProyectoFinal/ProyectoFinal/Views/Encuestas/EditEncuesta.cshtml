@@ -1,10 +1,9 @@
-﻿@model DAL.Encuestas
-
+﻿@model BussinesEntities.EncuestaEntity
 @{
-    ViewBag.Title = "Edit";
+    ViewBag.Title = "Editar Encuesta";
 }
 
-<h2>Edit</h2>
+<h2>Editar Encuesta</h2>
 
 @using (Html.BeginForm())
 {
@@ -17,7 +16,7 @@
         @Html.HiddenFor(model => model.idEncuesta)
 
         <div class="form-group">
-            @Html.LabelFor(model => model.nombre, new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.nombre, "Nombre: ", new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.nombre)
                 @Html.ValidationMessageFor(model => model.nombre)
@@ -25,7 +24,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.descripcion, new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.descripcion, "Descripción: ", new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.descripcion)
                 @Html.ValidationMessageFor(model => model.descripcion)
@@ -33,7 +32,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.idTipoEncuesta, "idTipoEncuesta", new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.idTipoEncuesta, "Tipo: ", new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.DropDownList("idTipoEncuesta", String.Empty)
                 @Html.ValidationMessageFor(model => model.idTipoEncuesta)
@@ -41,13 +40,21 @@
         </div>
 
         <div class="form-group">
+            @Html.LabelFor(model => model.fechaVencimiento, "Vencimiento: ", new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.fechaVencimiento)
+                @Html.ValidationMessageFor(model => model.fechaVencimiento)
+            </div>
+        </div>
+
+        <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-default" />
+                <input type="submit" value="GUARDAR" class="btn btn-default" />
             </div>
         </div>
     </div>
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("VOLVER A ENCUESTAS", "EncuestasIndex")
 </div>

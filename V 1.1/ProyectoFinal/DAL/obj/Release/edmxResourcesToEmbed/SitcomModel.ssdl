@@ -261,6 +261,7 @@
     <Property Name="idClasifPregunta" Type="int" />
     <Property Name="textoPregunta" Type="nvarchar" MaxLength="200" />
     <Property Name="idEncuesta" Type="int" />
+    <Property Name="idTipoRespuesta" Type="int" />
   </EntityType>
   <EntityType Name="Promociones">
     <Key>
@@ -410,6 +411,14 @@
     <Property Name="idTipoEncuesta" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="nombre" Type="nvarchar" MaxLength="50" />
     <Property Name="descripcion" Type="nvarchar" MaxLength="200" />
+  </EntityType>
+  <EntityType Name="TiposRespuesta">
+    <Key>
+      <PropertyRef Name="idTipoRespuesta" />
+    </Key>
+    <Property Name="idTipoRespuesta" Type="int" Nullable="false" />
+    <Property Name="nombre" Type="varchar" MaxLength="50" />
+    <Property Name="descripcion" Type="varchar" MaxLength="100" />
   </EntityType>
   <EntityType Name="TipoTramite">
     <Key>
@@ -887,6 +896,18 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_Preguntas_ClasifPregunta">
+    <End Role="ClasifPregunta" Type="Self.ClasifPregunta" Multiplicity="0..1" />
+    <End Role="Preguntas" Type="Self.Preguntas" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ClasifPregunta">
+        <PropertyRef Name="idClasifPregunta" />
+      </Principal>
+      <Dependent Role="Preguntas">
+        <PropertyRef Name="idClasifPregunta" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_Preguntas_Encuestas">
     <End Role="Encuestas" Type="Self.Encuestas" Multiplicity="0..1" />
     <End Role="Preguntas" Type="Self.Preguntas" Multiplicity="*" />
@@ -908,6 +929,18 @@
       </Principal>
       <Dependent Role="Preguntas1">
         <PropertyRef Name="idPregunta" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Preguntas_TiposRespuesta">
+    <End Role="TiposRespuesta" Type="Self.TiposRespuesta" Multiplicity="0..1" />
+    <End Role="Preguntas" Type="Self.Preguntas" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TiposRespuesta">
+        <PropertyRef Name="idTipoRespuesta" />
+      </Principal>
+      <Dependent Role="Preguntas">
+        <PropertyRef Name="idTipoRespuesta" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -1302,6 +1335,7 @@
     <EntitySet Name="TipoHabitacion" EntityType="Self.TipoHabitacion" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="TipoLugarHospedaje" EntityType="Self.TipoLugarHospedaje" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="TiposEncuesta" EntityType="Self.TiposEncuesta" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TiposRespuesta" EntityType="Self.TiposRespuesta" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="TipoTramite" EntityType="Self.TipoTramite" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Tramite" EntityType="Self.Tramite" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Usuarios" EntityType="Self.Usuarios" Schema="dbo" store:Type="Tables" />
@@ -1453,6 +1487,10 @@
       <End Role="TipoDocumento" EntitySet="TipoDocumento" />
       <End Role="Persona" EntitySet="Persona" />
     </AssociationSet>
+    <AssociationSet Name="FK_Preguntas_ClasifPregunta" Association="Self.FK_Preguntas_ClasifPregunta">
+      <End Role="ClasifPregunta" EntitySet="ClasifPregunta" />
+      <End Role="Preguntas" EntitySet="Preguntas" />
+    </AssociationSet>
     <AssociationSet Name="FK_Preguntas_Encuestas" Association="Self.FK_Preguntas_Encuestas">
       <End Role="Encuestas" EntitySet="Encuestas" />
       <End Role="Preguntas" EntitySet="Preguntas" />
@@ -1460,6 +1498,10 @@
     <AssociationSet Name="FK_Preguntas_Preguntas" Association="Self.FK_Preguntas_Preguntas">
       <End Role="Preguntas" EntitySet="Preguntas" />
       <End Role="Preguntas1" EntitySet="Preguntas" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Preguntas_TiposRespuesta" Association="Self.FK_Preguntas_TiposRespuesta">
+      <End Role="TiposRespuesta" EntitySet="TiposRespuesta" />
+      <End Role="Preguntas" EntitySet="Preguntas" />
     </AssociationSet>
     <AssociationSet Name="FK_Promociones_Negocio" Association="Self.FK_Promociones_Negocio">
       <End Role="Negocio" EntitySet="Negocio" />

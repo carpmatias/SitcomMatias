@@ -23,11 +23,14 @@ namespace DAL
         public string textoPregunta { get; set; }
         public Nullable<int> idEncuesta { get; set; }
         public Nullable<int> idClasifPregunta { get; set; }
+        public Nullable<int> idTipoRespuesta { get; set; }
     
         public virtual Encuestas Encuestas { get; set; }
         public virtual Encuestas Encuestas1 { get; set; }
         public virtual Preguntas Preguntas1 { get; set; }
         public virtual Preguntas Preguntas2 { get; set; }
         public virtual ICollection<RtasXEncuestasAsignadas> RtasXEncuestasAsignadas { get; set; }
+        public virtual TiposRespuesta TiposRespuesta { get; set; }
+        public virtual ClasifPregunta ClasifPregunta { get; set; }
     }
 }

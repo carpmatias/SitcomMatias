@@ -17,6 +17,7 @@
             $("#btnTodosLosTramites").hide();
             $("#tabSecretaria").hide();
             $("#btnTusPromociones").show();
+            $("#btnEncuestas").hide();
         }
 
         if (perfil == 2) {
@@ -26,6 +27,7 @@
             $("#btnTodosLosTramites").hide();
             $("#tabSecretaria").hide();
             $("#btnTusPromociones").hide();
+            $("#btnEncuestas").hide();
         }
 
         if (perfil == 3) {
@@ -35,6 +37,7 @@
             $("#btnTodosLosTramites").show();
             $("#tabSecretaria").show();
             $("#btnTusPromociones").hide();
+            $("#btnEncuestas").show();
         }
 
         if (mensaje != "") {
@@ -45,6 +48,11 @@
         $("#btnTusTramitesAsignados").click(function () {
             event.preventDefault();
             window.location = '@Url.Action("TramitesUsuario","Tramites")';
+        });
+
+        $("#btnEncuestas").click(function (event) {
+            window.location = '@Url.Action("EncuestasIndex", "Encuestas")';
+            event.preventDefault();
         });
 
        /* $("#btnModificarDatos").click(function () {
@@ -117,6 +125,10 @@
                     
                     <a href="../Tramites/TramitesResp" class="btn btn-default active" id="btnTodosLosTramites">
                         <span class="glyphicon glyphicon-user" aria-hidden="true"></span> TODOS LOS TRAMITES
+                    </a>
+
+                    <a href="" class="btn btn-default" id="btnEncuestas" style="width:250px;">
+                        ENCUESTAS
                     </a>
 
 
